@@ -50,7 +50,7 @@ public class RegistrationServiceImplTest {
         customer.setLast_name("Dipak");
         customer.setLast_name("Balsantosh");
         customer.setEmail("dipak@gmail.com");
-        customer.setActive(true);
+        customer.setActive(false);
         customer.setPassword("dipak");
         address.setAddress_id(11);
         address.setAddress("a/p Laxmi chowk 32 Shirala");
@@ -92,4 +92,3 @@ public class RegistrationServiceImplTest {
         assertEquals("Registration Failed", service.userRegistration(customer));
     }
  }
-}
