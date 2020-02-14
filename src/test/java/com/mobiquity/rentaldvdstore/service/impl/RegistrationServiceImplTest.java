@@ -85,14 +85,11 @@ public class RegistrationServiceImplTest {
         Mockito.when(registrationDao.userRegistration(customer)).thenThrow(RuntimeException.class);
         assertEquals("Registration Failed", service.userRegistration(customer));
     }
+
     @Test
     public void testFailRegistrationWithEmpty() {
         Mockito.when(registrationDao.userRegistration(customer)).thenReturn(null);
         assertEquals("Registration Failed", service.userRegistration(customer));
     }
-
-<<<<<<< HEAD
+ }
 }
-=======
-}
->>>>>>> a53ee702bf5a08a72a6bc97164f5045b9696b07d
