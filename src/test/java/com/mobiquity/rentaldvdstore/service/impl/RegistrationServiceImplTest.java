@@ -91,4 +91,8 @@ public class RegistrationServiceImplTest {
         assertEquals("Registration Failed", service.userRegistration(customer));
     }
 
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> a53ee702bf5a08a72a6bc97164f5045b9696b07d
