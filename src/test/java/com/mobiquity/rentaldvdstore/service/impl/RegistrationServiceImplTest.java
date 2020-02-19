@@ -91,4 +91,53 @@ public class RegistrationServiceImplTest {
         Mockito.when(registrationDao.userRegistration(customer)).thenReturn(null);
         assertEquals("Registration Failed", service.userRegistration(customer));
     }
- }
+
+    @Test
+    public void testCustomerRegisteredOrNot(){
+        customer.setCustomer_id(102);
+        customer.setFirst_name("Gaurav");
+        customer.setLast_name("Sonawane");
+        customer.setEmail("gaurav@gmail.com");
+        customer.setActive(true);
+        customer.setPassword("gaurav");
+        address.setAddress_id(12);
+        address.setAddress("Pune");
+        address.setDistrict("Pune");
+        address.setPostal_code(411052);
+        address.setLocation("Pune");
+        city.setCity_id(111);
+        city.setCity("Pune");
+        country.setCountry_id(1);
+        country.setCountry("India");
+
+        Mockito.when(registrationDao.testRegisteredEmailId("gaurav@gmail.com"))
+                .thenReturn("gaurav@gmail.com");
+        assertEquals("Email Id already Registered",
+                service.testRegisteredEmailId(customer.getEmail()));
+    }
+
+    @Test
+    public void testAlreadyCustomerRegistered(){
+        customer.setCustomer_id(102);
+        customer.setFirst_name("Gaurav");
+        customer.setLast_name("Sonawane");
+        customer.setEmail("gauravs@gmail.com");
+        customer.setActive(true);
+        customer.setPassword("gaurav");
+        address.setAddress_id(12);
+        address.setAddress("Pune");
+        address.setDistrict("Pune");
+        address.setPostal_code(411052);
+        address.setLocation("Pune");
+        city.setCity_id(111);
+        city.setCity("Pune");
+        country.setCountry_id(1);
+        country.setCountry("India");
+
+        Mockito.when(registrationDao.testRegisteredEmailId("gaurav@gmail.com"))
+                .thenReturn("gaurav@gmail.com");
+        assertEquals("Registration Success",
+                service.testRegisteredEmailId(customer.getEmail()));
+    }
+
+}

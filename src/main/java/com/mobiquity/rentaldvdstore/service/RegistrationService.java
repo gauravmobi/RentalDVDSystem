@@ -5,5 +5,7 @@ import com.mobiquity.rentaldvdstore.pojo.Customer;
 public interface RegistrationService
 {
 
-    public String userRegistration(Customer customer);
+    String userRegistration(Customer customer);
+
+    String testRegisteredEmailId(String email);
 }

@@ -9,4 +9,9 @@ public class RegistrationDaoImpl implements RegistrationDao {
     public String userRegistration(Customer customer) {
         return null;
     }
+
+    @Override
+    public String testRegisteredEmailId(String email) {
+        return null;
+    }
 }

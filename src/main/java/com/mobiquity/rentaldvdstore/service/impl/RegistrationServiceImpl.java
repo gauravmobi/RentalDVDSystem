@@ -25,4 +25,15 @@ public class RegistrationServiceImpl implements RegistrationService
             return "Registration Failed";
         }
     }
+
+    @Override
+    public String testRegisteredEmailId(String email) {
+        if (email.equals(registrationDao.testRegisteredEmailId(email))) {
+            return "Email Id already Registered";
+        }
+        else
+        {
+            return "Registration Success";
+        }
+    }
 }
