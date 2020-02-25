@@ -3,11 +3,15 @@ package com.mobiquity.rentaldvdstore.service.impl;
 
 import com.mobiquity.rentaldvdstore.dao.ListingDao;
 import com.mobiquity.rentaldvdstore.dao.SearchDvdDao;
+import com.mobiquity.rentaldvdstore.enums.Genre;
+import com.mobiquity.rentaldvdstore.enums.Language;
 import com.mobiquity.rentaldvdstore.pojo.Criteria;
 import com.mobiquity.rentaldvdstore.pojo.Dvd;
 import com.mobiquity.rentaldvdstore.service.SearchDvdService;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class SearchDvdServiceimpl implements SearchDvdService {
 
@@ -24,25 +28,32 @@ public class SearchDvdServiceimpl implements SearchDvdService {
 
     @Override
     public List<Dvd> selectDvdByCriteria(Criteria criteria) {
-
+        Map<String,String> dvdMap = new HashMap<>();
         if(criteria != null){
             if(criteria.getGenre() != null){
+                    dvdMap.put("Genre", criteria.getGenre().toString());
 
-            }else if(criteria.getLanguage() != null){
+            }if(criteria.getLanguage() != null) {
+                dvdMap.put("Language", criteria.getLanguage().toString());
 
-            }else if(criteria.getActor() != null){
+            }if(criteria.getActor() != null){
+                dvdMap.put("Actor", criteria.getActor());
 
-            }else if(criteria.getDirector() != null){
+            }if(criteria.getDirector() != null){
+                dvdMap.put("Director",criteria.getDirector());
 
-            }else if(criteria.getYear() != null){
+            }if(criteria.getYear() != null){
+                dvdMap.put("Year", criteria.getYear());
 
-            }else {
+            }if(dvdMap.isEmpty()){
                 return listingDao.getAllFilms();
+            }else {
+                return  searchDvdDao.selectDvdByCriteria(dvdMap);
             }
 
         }else {
             throw new IllegalArgumentException();
         }
-        return  null;
+
     }
 }

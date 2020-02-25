@@ -49,4 +49,15 @@ public class Criteria {
     public void setYear(String year) {
         this.year = year;
     }
+
+    @Override
+    public String toString() {
+        return "Criteria{" +
+                "genre=" + genre +
+                ", language=" + language +
+                ", actor='" + actor + '\'' +
+                ", director='" + director + '\'' +
+                ", year='" + year + '\'' +
+                '}';
+    }
 }
