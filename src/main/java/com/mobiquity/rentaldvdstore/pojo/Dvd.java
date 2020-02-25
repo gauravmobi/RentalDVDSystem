@@ -13,9 +13,49 @@ public class Dvd extends MetadataPojo {
     private double rating;
     private Genre genre;
     private Language language;
-    private String actor;
     private String director;
+    private String actor;
     private String year;
+
+    public String getYear() {
+        return year;
+    }
+
+    public void setYear(String year) {
+        this.year = year;
+    }
+
+    public String getDirector() {
+        return director;
+    }
+
+    public void setDirector(String director) {
+        this.director = director;
+    }
+
+    public String getActor() {
+        return actor;
+    }
+
+    public void setActor(String actor) {
+        this.actor = actor;
+    }
+
+    public Language getLanguage() {
+        return language;
+    }
+
+    public void setLanguage(Language language) {
+        this.language = language;
+    }
+
+    public Genre getGenre() {
+        return genre;
+    }
+
+    public void setGenre(Genre genre) {
+        this.genre = genre;
+    }
 
     public int getFilmId() {
         return filmId;
@@ -73,46 +113,6 @@ public class Dvd extends MetadataPojo {
         this.rating = rating;
     }
 
-    public Genre getGenre() {
-        return genre;
-    }
-
-    public void setGenre(Genre genre) {
-        this.genre = genre;
-    }
-
-    public Language getLanguage() {
-        return language;
-    }
-
-    public void setLanguage(Language language) {
-        this.language = language;
-    }
-
-    public String getActor() {
-        return actor;
-    }
-
-    public void setActor(String actor) {
-        this.actor = actor;
-    }
-
-    public String getDirector() {
-        return director;
-    }
-
-    public void setDirector(String director) {
-        this.director = director;
-    }
-
-    public String getYear() {
-        return year;
-    }
-
-    public void setYear(String year) {
-        this.year = year;
-    }
-
     @Override
     public String toString() {
         return "Dvd{" +
@@ -125,8 +125,8 @@ public class Dvd extends MetadataPojo {
                 ", rating=" + rating +
                 ", genre=" + genre +
                 ", language=" + language +
-                ", actor='" + actor + '\'' +
                 ", director='" + director + '\'' +
+                ", actor='" + actor + '\'' +
                 ", year='" + year + '\'' +
                 '}';
     }
