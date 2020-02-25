@@ -14,4 +14,20 @@ public class RegistrationDaoImpl implements RegistrationDao {
     public String testRegisteredEmailId(String email) {
         return null;
     }
+
+    @Override
+    public Boolean validatePasswordPattern(String password) {
+        return null;
+    }
+
+    @Override
+    public Boolean validateEmailPattern(String password) {
+        return null;
+    }
+
+    @Override
+    public Boolean validateMobileNo(String mobile_no) {
+        return null;
+    }
+
 }

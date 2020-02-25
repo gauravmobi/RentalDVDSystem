@@ -8,19 +8,9 @@ public class Customer extends MetadataPojo {
     private Boolean active;
     private String password;
     private Address address_id;
+    private String mobile_no;
 
     public Customer() {
-    }
-
-    public Customer(int customer_id, String first_name, String last_name, String email, Boolean active,
-                    String password, Address address_id) {
-        this.customer_id = customer_id;
-        this.first_name = first_name;
-        this.last_name = last_name;
-        this.email = email;
-        this.active = active;
-        this.password = password;
-        this.address_id = address_id;
     }
 
     public int getCustomer_id() {
@@ -77,6 +67,14 @@ public class Customer extends MetadataPojo {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getMobile_no() {
+        return mobile_no;
+    }
+
+    public void setMobile_no(String mobile_no) {
+        this.mobile_no = mobile_no;
     }
 
     @Override

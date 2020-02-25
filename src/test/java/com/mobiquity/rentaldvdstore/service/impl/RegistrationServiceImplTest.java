@@ -2,12 +2,11 @@ package com.mobiquity.rentaldvdstore.service.impl;
 
 import com.mobiquity.rentaldvdstore.dao.LoginDao;
 import com.mobiquity.rentaldvdstore.dao.RegistrationDao;
-import com.mobiquity.rentaldvdstore.pojo.Address;
-import com.mobiquity.rentaldvdstore.pojo.City;
-import com.mobiquity.rentaldvdstore.pojo.Country;
-import com.mobiquity.rentaldvdstore.pojo.Customer;
+import com.mobiquity.rentaldvdstore.helper.RegistrationValidator;
+import com.mobiquity.rentaldvdstore.pojo.*;
 import com.mobiquity.rentaldvdstore.service.impl.LoginServiceImpl;
 import com.mobiquity.rentaldvdstore.service.impl.RegistrationServiceImpl;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -17,7 +16,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -25,90 +24,105 @@ import static org.junit.Assert.assertEquals;
 public class RegistrationServiceImplTest {
     RegistrationServiceImpl service = new RegistrationServiceImpl();
     @Mock
-    RegistrationDao registrationDao;
-    Customer customer;
-    Address address;
-    City city;
-    Country country;
+    private RegistrationDao registrationDao;
 
     @Before
     public void setup() {
         service.setRegistrationDao(registrationDao);
     }
 
-    @Before
-    public void prepare() {
-        customer = new Customer();
-        address = new Address();
-        city = new City();
-        country = new Country();
+    private Customer getCustomerObject(int id, String fname, String lname, String email, Boolean active, String password,
+                                       String mobno, Address address) {
+        Customer customer = new Customer();
+        customer.setCustomer_id(id);
+        customer.setFirst_name(fname);
+        customer.setLast_name(lname);
+        customer.setActive(active);
+        customer.setEmail(email);
+        customer.setPassword(password);
+        customer.setMobile_no(mobno);
+        customer.setAddress_id(address);
+        return customer;
+    }
+
+    private Address getAddressObject(int addressid, String add, String district, int postalcode, String location,
+                                     City city) {
+        Address address = new Address();
+        address.setAddress_id(addressid);
+        address.setAddress(add);
+        address.setDistrict(district);
+        address.setPostal_code(postalcode);
+        address.setLocation(location);
+        address.setCity_id(city);
+        return address;
+    }
+
+    private City getCityObject(int cityid, String cityname, Country country) {
+        City city = new City();
+        city.setCity_id(cityid);
+        city.setCity(cityname);
+        city.setCountry_id(country);
+        return city;
+    }
+
+    private Country getCountryObject(int countryid, String countryname) {
+        Country country = new Country();
+        country.setCountry_id(countryid);
+        country.setCountry(countryname);
+        return country;
     }
 
     @Test
     public void testSuccessfullyRegistration() {
-        customer.setCustomer_id(101);
-        customer.setLast_name("Dipak");
-        customer.setLast_name("Balsantosh");
-        customer.setEmail("dipak@gmail.com");
-        customer.setActive(false);
-        customer.setPassword("dipak");
-        address.setAddress_id(11);
-        address.setAddress("a/p Laxmi chowk 32 Shirala");
-        address.setDistrict("Sangli");
-        address.setPostal_code(415408);
-        address.setLocation("Shirala");
-        city.setCity_id(111);
-        city.setCity("32 Shirala");
-        country.setCountry_id(1);
-        country.setCountry("India");
+        Country country = getCountryObject(1, "India");
+        City city = getCityObject(111, "Pune", country);
+        Address address = getAddressObject(3, "a/p Laxmi chowk 32 Shirala", "Sangli",
+                415408, "Shirala", city);
+        Customer customer = getCustomerObject(101, "dipak", "b", "abc@gmail.com",
+                true, "abcW$1", "+919999999999", address);
+
         Mockito.when(registrationDao.userRegistration(customer)).thenReturn("Registration Success");
         assertEquals("Registration Success", service.userRegistration(customer));
     }
 
     @Test
     public void testFailRegistrationWithException() {
-        customer.setCustomer_id(101);
-        customer.setLast_name("Dipak");
-        customer.setLast_name("Balsantosh");
-        customer.setEmail("dipak@gmail.com");
-        customer.setActive(true);
-        customer.setPassword("dipak");
-        address.setAddress_id(11);
-        address.setAddress("a/p Laxmi chowk 32 Shirala");
-        address.setDistrict("Sangli");
-        address.setPostal_code(415408);
-        address.setLocation("Shirala");
-        city.setCity_id(111);
-        city.setCity("32 Shirala");
-        country.setCountry_id(1);
-        country.setCountry("India");
+        Country country = getCountryObject(1, "India");
+        City city = getCityObject(111, "Pune", country);
+        Address address = getAddressObject(3, "a/p Laxmi chowk 32 Shirala", "Sangli",
+                415408, "Shirala", city);
+        Customer customer = getCustomerObject(101, "dipak", "b", "abc@gmail.com",
+                true, "abcW$1", "+919999999999", address);
         Mockito.when(registrationDao.userRegistration(customer)).thenThrow(RuntimeException.class);
         assertEquals("Registration Failed", service.userRegistration(customer));
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void testFailRegistrationWithEmptyCustomerObject() {
+        assertEquals(IllegalArgumentException.class, service.userRegistration(null));
+    }
+
     @Test
-    public void testFailRegistrationWithEmpty() {
+    public void testFailRegistrationWithNullDaoCustomerObject() {
+        Country country = getCountryObject(1, "India");
+        City city = getCityObject(111, "Pune", country);
+        Address address = getAddressObject(3, "a/p Laxmi chowk 32 Shirala", "Sangli",
+                415408, "Shirala", city);
+        Customer customer = getCustomerObject(101, "dipak", "b", "abc@gmail.com",
+                true, "abcW$1", "+919999999999", address);
+
         Mockito.when(registrationDao.userRegistration(customer)).thenReturn(null);
         assertEquals("Registration Failed", service.userRegistration(customer));
     }
 
     @Test
-    public void testCustomerRegisteredOrNot(){
-        customer.setCustomer_id(102);
-        customer.setFirst_name("Gaurav");
-        customer.setLast_name("Sonawane");
-        customer.setEmail("gaurav@gmail.com");
-        customer.setActive(true);
-        customer.setPassword("gaurav");
-        address.setAddress_id(12);
-        address.setAddress("Pune");
-        address.setDistrict("Pune");
-        address.setPostal_code(411052);
-        address.setLocation("Pune");
-        city.setCity_id(111);
-        city.setCity("Pune");
-        country.setCountry_id(1);
-        country.setCountry("India");
+    public void testCustomerRegisteredOrNot() {
+        Country country = getCountryObject(1, "India");
+        City city = getCityObject(111, "Pune", country);
+        Address address = getAddressObject(3, "a/p Laxmi chowk 32 Shirala", "Sangli",
+                415408, "Shirala", city);
+        Customer customer = getCustomerObject(101, "dipak", "b", "gaurav@gmail.com",
+                true, "abcW$1", "+919999999999", address);
 
         Mockito.when(registrationDao.testRegisteredEmailId("gaurav@gmail.com"))
                 .thenReturn("gaurav@gmail.com");
@@ -117,27 +131,87 @@ public class RegistrationServiceImplTest {
     }
 
     @Test
-    public void testAlreadyCustomerRegistered(){
-        customer.setCustomer_id(102);
-        customer.setFirst_name("Gaurav");
-        customer.setLast_name("Sonawane");
-        customer.setEmail("gauravs@gmail.com");
-        customer.setActive(true);
-        customer.setPassword("gaurav");
-        address.setAddress_id(12);
-        address.setAddress("Pune");
-        address.setDistrict("Pune");
-        address.setPostal_code(411052);
-        address.setLocation("Pune");
-        city.setCity_id(111);
-        city.setCity("Pune");
-        country.setCountry_id(1);
-        country.setCountry("India");
+    public void testAlreadyCustomerRegistered() {
+        Country country = getCountryObject(1, "India");
+        City city = getCityObject(111, "Pune", country);
+        Address address = getAddressObject(3, "a/p Laxmi chowk 32 Shirala", "Sangli",
+                415408, "Shirala", city);
+        Customer customer = getCustomerObject(101, "dipak", "b", "abc@gmail.com",
+                true, "abcW$1", "+919999999999", address);
 
         Mockito.when(registrationDao.testRegisteredEmailId("gaurav@gmail.com"))
                 .thenReturn("gaurav@gmail.com");
         assertEquals("Registration Success",
                 service.testRegisteredEmailId(customer.getEmail()));
+    }
+
+    @Test
+    public void testCorrectEmailPattern() {
+        Country country = getCountryObject(1, "India");
+        City city = getCityObject(111, "Pune", country);
+        Address address = getAddressObject(3, "a/p Laxmi chowk 32 Shirala", "Sangli",
+                415408, "Shirala", city);
+        Customer customer = getCustomerObject(101, "dipak", "b", "abc@gmail.com",
+                true, "abcW$1", "+919999999999", address);
+        Mockito.when(registrationDao.userRegistration(customer)).thenReturn("Registration Success");
+        assertEquals("Registration Success", service.userRegistration(customer));
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testInCorrectEmailPattern() {
+        Country country = getCountryObject(1, "India");
+        City city = getCityObject(111, "Pune", country);
+        Address address = getAddressObject(3, "a/p Laxmi chowk 32 Shirala", "Sangli",
+                415408, "Shirala", city);
+        Customer customer = getCustomerObject(101, "dipak", "b", "abcgmail.com",
+                true, "abcW$1", "+919999999999", address);
+        assertEquals(IllegalArgumentException.class, service.userRegistration(customer));
+    }
+
+    @Test
+    public void testCorrectPasswordPattern() {
+        Country country = getCountryObject(1, "India");
+        City city = getCityObject(111, "Pune", country);
+        Address address = getAddressObject(3, "a/p Laxmi chowk 32 Shirala", "Sangli",
+                415408, "Shirala", city);
+        Customer customer = getCustomerObject(101, "dipak", "b", "abc@gmail.com",
+                true, "abcW$1", "+919999999999", address);
+        Mockito.when(registrationDao.userRegistration(customer)).thenReturn("Registration Success");
+        assertEquals("Registration Success", service.userRegistration(customer));
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testInCorrectPasswordPattern() {
+        Country country = getCountryObject(1, "India");
+        City city = getCityObject(111, "Pune", country);
+        Address address = getAddressObject(3, "a/p Laxmi chowk 32 Shirala", "Sangli",
+                415408, "Shirala", city);
+        Customer customer = getCustomerObject(101, "dipak", "b", "abcgmail.com",
+                true, "abc", "+919999999999", address);
+        assertEquals(IllegalArgumentException.class, service.userRegistration(customer));
+    }
+
+    @Test
+    public void testCorrectMobileNoPattern() {
+        Country country = getCountryObject(1, "India");
+        City city = getCityObject(111, "Pune", country);
+        Address address = getAddressObject(3, "a/p Laxmi chowk 32 Shirala", "Sangli",
+                415408, "Shirala", city);
+        Customer customer = getCustomerObject(101, "dipak", "b", "abc@gmail.com",
+                true, "abcW$1", "9999999999", address);
+        Mockito.when(registrationDao.userRegistration(customer)).thenReturn("Registration Success");
+        assertEquals("Registration Success", service.userRegistration(customer));
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testInCorrectMobileNoPattern() {
+        Country country = getCountryObject(1, "India");
+        City city = getCityObject(111, "Pune", country);
+        Address address = getAddressObject(3, "a/p Laxmi chowk 32 Shirala", "Sangli",
+                415408, "Shirala", city);
+        Customer customer = getCustomerObject(101, "dipak", "b", "abcgmail.com",
+                true, "abcW$1", "9999", address);
+        assertEquals(IllegalArgumentException.class, service.userRegistration(customer));
     }
 
 }
