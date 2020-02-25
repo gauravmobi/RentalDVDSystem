@@ -1,6 +1,7 @@
 package com.mobiquity.rentaldvdstore.pojo;
 
 import com.mobiquity.rentaldvdstore.enums.Genre;
+import com.mobiquity.rentaldvdstore.enums.Language;
 
 public class Dvd extends MetadataPojo {
     private int filmId;
@@ -11,6 +12,42 @@ public class Dvd extends MetadataPojo {
     private int rentalRate;
     private double rating;
     private Genre genre;
+    private Language language;
+    private String director;
+    private String actor;
+    private String year;
+
+    public String getYear() {
+        return year;
+    }
+
+    public void setYear(String year) {
+        this.year = year;
+    }
+
+    public String getDirector() {
+        return director;
+    }
+
+    public void setDirector(String director) {
+        this.director = director;
+    }
+
+    public String getActor() {
+        return actor;
+    }
+
+    public void setActor(String actor) {
+        this.actor = actor;
+    }
+
+    public Language getLanguage() {
+        return language;
+    }
+
+    public void setLanguage(Language language) {
+        this.language = language;
+    }
 
     public Genre getGenre() {
         return genre;
@@ -78,7 +115,7 @@ public class Dvd extends MetadataPojo {
 
     @Override
     public String toString() {
-        return "Film{" +
+        return "Dvd{" +
                 "filmId=" + filmId +
                 ", title='" + title + '\'' +
                 ", description='" + description + '\'' +
@@ -86,6 +123,11 @@ public class Dvd extends MetadataPojo {
                 ", rentalDuration=" + rentalDuration +
                 ", rentalRate=" + rentalRate +
                 ", rating=" + rating +
+                ", genre=" + genre +
+                ", language=" + language +
+                ", director='" + director + '\'' +
+                ", actor='" + actor + '\'' +
+                ", year='" + year + '\'' +
                 '}';
     }
 }

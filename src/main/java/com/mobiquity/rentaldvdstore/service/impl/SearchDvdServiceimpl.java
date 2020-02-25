@@ -7,6 +7,8 @@ import com.mobiquity.rentaldvdstore.pojo.Criteria;
 import com.mobiquity.rentaldvdstore.pojo.Dvd;
 import com.mobiquity.rentaldvdstore.service.SearchDvdService;
 
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 public class SearchDvdServiceimpl implements SearchDvdService {
@@ -24,25 +26,37 @@ public class SearchDvdServiceimpl implements SearchDvdService {
 
     @Override
     public List<Dvd> selectDvdByCriteria(Criteria criteria) {
-
+        HashMap<String, String> categoryMap=new HashMap<>();
         if(criteria != null){
             if(criteria.getGenre() != null){
+                categoryMap.put("Genre",criteria.getGenre().toString());
 
-            }else if(criteria.getLanguage() != null){
+            }
+            if(criteria.getLanguage() != null){
+                categoryMap.put("Language",criteria.getLanguage().toString());
 
-            }else if(criteria.getActor() != null){
+            }
+            if(criteria.getActor() != null){
+                categoryMap.put("Actor",criteria.getActor());
 
-            }else if(criteria.getDirector() != null){
+            }
+            if(criteria.getDirector() != null){
+                categoryMap.put("Director",criteria.getDirector());
 
-            }else if(criteria.getYear() != null){
+            }
+            if(criteria.getYear() != null){
+                categoryMap.put("Year",criteria.getYear());
 
-            }else {
+            }
+            if(categoryMap.isEmpty()) {
                 return listingDao.getAllFilms();
+            }
+            else {
+                return searchDvdDao.selectDvdByCriteria(categoryMap);
             }
 
         }else {
             throw new IllegalArgumentException();
         }
-        return  null;
     }
 }
