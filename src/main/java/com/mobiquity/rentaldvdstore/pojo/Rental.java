@@ -2,15 +2,22 @@ package com.mobiquity.rentaldvdstore.pojo;
 
 import java.util.Date;
 
-public class Rental extends MetadataPojo
-{
+public class Rental extends MetadataPojo {
     private int rental_id;
-    private Date rental_date;
-    private int inventory_id;
+    private String rental_date;
     private Customer customer_id;
-    private Date return_date;
+    private String return_date;
+    private Dvd dvdid;
 
     public Rental() {
+    }
+
+    public Dvd getDvdid() {
+        return dvdid;
+    }
+
+    public void setDvdid(Dvd dvdid) {
+        this.dvdid = dvdid;
     }
 
     public int getRental_id() {
@@ -21,20 +28,12 @@ public class Rental extends MetadataPojo
         this.rental_id = rental_id;
     }
 
-    public Date getRental_date() {
+    public String getRental_date() {
         return rental_date;
     }
 
-    public void setRental_date(Date rental_date) {
+    public void setRental_date(String rental_date) {
         this.rental_date = rental_date;
-    }
-
-    public int getInventory_id() {
-        return inventory_id;
-    }
-
-    public void setInventory_id(int inventory_id) {
-        this.inventory_id = inventory_id;
     }
 
     public Customer getCustomer_id() {
@@ -45,11 +44,22 @@ public class Rental extends MetadataPojo
         this.customer_id = customer_id;
     }
 
-    public Date getReturn_date() {
+    public String getReturn_date() {
         return return_date;
     }
 
-    public void setReturn_date(Date return_date) {
+    public void setReturn_date(String return_date) {
         this.return_date = return_date;
+    }
+
+    @Override
+    public String toString() {
+        return "Rental{" +
+                "rental_id=" + rental_id +
+                ", rental_date='" + rental_date + '\'' +
+                ", customer_id=" + customer_id +
+                ", return_date='" + return_date + '\'' +
+                ", dvdid=" + dvdid +
+                '}';
     }
 }

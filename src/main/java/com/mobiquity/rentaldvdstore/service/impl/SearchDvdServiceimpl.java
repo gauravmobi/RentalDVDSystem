@@ -7,7 +7,6 @@ import com.mobiquity.rentaldvdstore.pojo.Criteria;
 import com.mobiquity.rentaldvdstore.pojo.Dvd;
 import com.mobiquity.rentaldvdstore.service.SearchDvdService;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 

@@ -1,7 +1,13 @@
 package com.mobiquity.rentaldvdstore.pojo;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "Country")
 public class Country extends MetadataPojo
 {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int country_id;
     private String country;
 

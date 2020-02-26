@@ -31,7 +31,7 @@ public class RegistrationServiceImplTest {
         service.setRegistrationDao(registrationDao);
     }
 
-    private Customer getCustomerObject(int id, String fname, String lname, String email, Boolean active, String password,
+    private Customer getCustomerObject(Long id, String fname, String lname, String email, Boolean active, String password,
                                        String mobno, Address address) {
         Customer customer = new Customer();
         customer.setCustomer_id(id);
@@ -78,7 +78,7 @@ public class RegistrationServiceImplTest {
         City city = getCityObject(111, "Pune", country);
         Address address = getAddressObject(3, "a/p Laxmi chowk 32 Shirala", "Sangli",
                 415408, "Shirala", city);
-        Customer customer = getCustomerObject(101, "dipak", "b", "abc@gmail.com",
+        Customer customer = getCustomerObject(101L, "dipak", "b", "abc@gmail.com",
                 true, "abcW$1", "+919999999999", address);
 
         Mockito.when(registrationDao.userRegistration(customer)).thenReturn("Registration Success");
@@ -91,7 +91,7 @@ public class RegistrationServiceImplTest {
         City city = getCityObject(111, "Pune", country);
         Address address = getAddressObject(3, "a/p Laxmi chowk 32 Shirala", "Sangli",
                 415408, "Shirala", city);
-        Customer customer = getCustomerObject(101, "dipak", "b", "abc@gmail.com",
+        Customer customer = getCustomerObject(101L, "dipak", "b", "abc@gmail.com",
                 true, "abcW$1", "+919999999999", address);
         Mockito.when(registrationDao.userRegistration(customer)).thenThrow(RuntimeException.class);
         assertEquals("Registration Failed", service.userRegistration(customer));
@@ -108,7 +108,7 @@ public class RegistrationServiceImplTest {
         City city = getCityObject(111, "Pune", country);
         Address address = getAddressObject(3, "a/p Laxmi chowk 32 Shirala", "Sangli",
                 415408, "Shirala", city);
-        Customer customer = getCustomerObject(101, "dipak", "b", "abc@gmail.com",
+        Customer customer = getCustomerObject(101L, "dipak", "b", "abc@gmail.com",
                 true, "abcW$1", "+919999999999", address);
 
         Mockito.when(registrationDao.userRegistration(customer)).thenReturn(null);
@@ -121,7 +121,7 @@ public class RegistrationServiceImplTest {
         City city = getCityObject(111, "Pune", country);
         Address address = getAddressObject(3, "a/p Laxmi chowk 32 Shirala", "Sangli",
                 415408, "Shirala", city);
-        Customer customer = getCustomerObject(101, "dipak", "b", "gaurav@gmail.com",
+        Customer customer = getCustomerObject(101L, "dipak", "b", "gaurav@gmail.com",
                 true, "abcW$1", "+919999999999", address);
 
         Mockito.when(registrationDao.testRegisteredEmailId("gaurav@gmail.com"))
@@ -136,7 +136,7 @@ public class RegistrationServiceImplTest {
         City city = getCityObject(111, "Pune", country);
         Address address = getAddressObject(3, "a/p Laxmi chowk 32 Shirala", "Sangli",
                 415408, "Shirala", city);
-        Customer customer = getCustomerObject(101, "dipak", "b", "abc@gmail.com",
+        Customer customer = getCustomerObject(101L, "dipak", "b", "abc@gmail.com",
                 true, "abcW$1", "+919999999999", address);
 
         Mockito.when(registrationDao.testRegisteredEmailId("gaurav@gmail.com"))
@@ -151,7 +151,7 @@ public class RegistrationServiceImplTest {
         City city = getCityObject(111, "Pune", country);
         Address address = getAddressObject(3, "a/p Laxmi chowk 32 Shirala", "Sangli",
                 415408, "Shirala", city);
-        Customer customer = getCustomerObject(101, "dipak", "b", "abc@gmail.com",
+        Customer customer = getCustomerObject(101L, "dipak", "b", "abc@gmail.com",
                 true, "abcW$1", "+919999999999", address);
         Mockito.when(registrationDao.userRegistration(customer)).thenReturn("Registration Success");
         assertEquals("Registration Success", service.userRegistration(customer));
@@ -163,7 +163,7 @@ public class RegistrationServiceImplTest {
         City city = getCityObject(111, "Pune", country);
         Address address = getAddressObject(3, "a/p Laxmi chowk 32 Shirala", "Sangli",
                 415408, "Shirala", city);
-        Customer customer = getCustomerObject(101, "dipak", "b", "abcgmail.com",
+        Customer customer = getCustomerObject(101L, "dipak", "b", "abcgmail.com",
                 true, "abcW$1", "+919999999999", address);
         assertEquals(IllegalArgumentException.class, service.userRegistration(customer));
     }
@@ -174,7 +174,7 @@ public class RegistrationServiceImplTest {
         City city = getCityObject(111, "Pune", country);
         Address address = getAddressObject(3, "a/p Laxmi chowk 32 Shirala", "Sangli",
                 415408, "Shirala", city);
-        Customer customer = getCustomerObject(101, "dipak", "b", "abc@gmail.com",
+        Customer customer = getCustomerObject(101L, "dipak", "b", "abc@gmail.com",
                 true, "abcW$1", "+919999999999", address);
         Mockito.when(registrationDao.userRegistration(customer)).thenReturn("Registration Success");
         assertEquals("Registration Success", service.userRegistration(customer));
@@ -186,7 +186,7 @@ public class RegistrationServiceImplTest {
         City city = getCityObject(111, "Pune", country);
         Address address = getAddressObject(3, "a/p Laxmi chowk 32 Shirala", "Sangli",
                 415408, "Shirala", city);
-        Customer customer = getCustomerObject(101, "dipak", "b", "abcgmail.com",
+        Customer customer = getCustomerObject(101L, "dipak", "b", "abcgmail.com",
                 true, "abc", "+919999999999", address);
         assertEquals(IllegalArgumentException.class, service.userRegistration(customer));
     }
@@ -197,7 +197,7 @@ public class RegistrationServiceImplTest {
         City city = getCityObject(111, "Pune", country);
         Address address = getAddressObject(3, "a/p Laxmi chowk 32 Shirala", "Sangli",
                 415408, "Shirala", city);
-        Customer customer = getCustomerObject(101, "dipak", "b", "abc@gmail.com",
+        Customer customer = getCustomerObject(101L, "dipak", "b", "abc@gmail.com",
                 true, "abcW$1", "9999999999", address);
         Mockito.when(registrationDao.userRegistration(customer)).thenReturn("Registration Success");
         assertEquals("Registration Success", service.userRegistration(customer));
@@ -209,7 +209,7 @@ public class RegistrationServiceImplTest {
         City city = getCityObject(111, "Pune", country);
         Address address = getAddressObject(3, "a/p Laxmi chowk 32 Shirala", "Sangli",
                 415408, "Shirala", city);
-        Customer customer = getCustomerObject(101, "dipak", "b", "abcgmail.com",
+        Customer customer = getCustomerObject(101L, "dipak", "b", "abcgmail.com",
                 true, "abcW$1", "9999", address);
         assertEquals(IllegalArgumentException.class, service.userRegistration(customer));
     }
