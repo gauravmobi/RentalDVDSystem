@@ -18,7 +18,7 @@ import static org.junit.Assert.assertEquals;
 @ContextConfiguration
 public class AdminServiceImplTest {
 
-    private AdminServiceImpl adminService=new AdminServiceImpl();
+    private AdminServiceImpl adminService = new AdminServiceImpl();
 
     @Mock
     AdminDao adminDao;
@@ -29,95 +29,101 @@ public class AdminServiceImplTest {
     }
 
     @Test
-   public  void testAddNewAdmin() {
-        Admin admin=new Admin();
+    public void testAddNewAdmin() {
+        Admin admin = new Admin();
         admin.setName("Admin");
         admin.setEmail("admin@gmail.com");
         admin.setPassword("Admin@123");
-        Mockito.when(adminDao.addNewAdmin(admin)).thenReturn("New Admin Succesfully Added In System");
-        assertEquals("New Admin Succesfully Added In System",adminService.addNewAdmin(admin));
+        Mockito.when(adminDao.addNewAdmin(admin)).thenReturn("New Admin Successfully Added In System");
+        assertEquals("New Admin Successfully Added In System", adminService.addNewAdmin(admin));
     }
 
     @Test
-    public  void testAddNewAdminWithoutEmail() {
-        Admin admin=new Admin();
+    public void testAddNewAdminWithoutEmail() {
+        Admin admin = new Admin();
         admin.setName("Admin");
         admin.setPassword("Admin@123");
-        assertEquals("Not Submited Sucessfully",adminService.addNewAdmin(admin));
+        assertEquals("Not Submitted Successfully", adminService.addNewAdmin(admin));
     }
 
     @Test
-    public  void testAddNewAdminWithoutName() {
-        Admin admin=new Admin();
+    public void testAddNewAdminWithoutName() {
+        Admin admin = new Admin();
         admin.setEmail("admin@gmail.com");
         admin.setPassword("Admin@123");
-        assertEquals("Not Submited Sucessfully",adminService.addNewAdmin(admin));
+        assertEquals("Not Submitted Successfully", adminService.addNewAdmin(admin));
     }
+
     @Test
-    public  void testAddNewAdminWithoutPassword() {
-        Admin admin=new Admin();
+    public void testAddNewAdminWithoutPassword() {
+        Admin admin = new Admin();
         admin.setName("Admin");
         admin.setEmail("admin@gmail.com");
-        assertEquals("Not Submited Sucessfully",adminService.addNewAdmin(admin));
+        assertEquals("Not Submitted Successfully", adminService.addNewAdmin(admin));
     }
+
     @Test
-    public  void testAddNewAdminWithBlankEmail() {
-        Admin admin=new Admin();
+    public void testAddNewAdminWithBlankEmail() {
+        Admin admin = new Admin();
         admin.setName("Admin");
         admin.setEmail("");
         admin.setPassword("Admin@123");
-        assertEquals("Not Submited Sucessfully",adminService.addNewAdmin(admin));
+        assertEquals("Not Submitted Successfully", adminService.addNewAdmin(admin));
     }
+
     @Test
-    public  void testAddNewAdminWithBlankName() {
-        Admin admin=new Admin();
+    public void testAddNewAdminWithBlankName() {
+        Admin admin = new Admin();
         admin.setName("");
         admin.setEmail("admin@gmail.com");
         admin.setPassword("Admin@123");
-        assertEquals("Not Submited Sucessfully",adminService.addNewAdmin(admin));
+        assertEquals("Not Submitted Successfully", adminService.addNewAdmin(admin));
     }
+
     @Test
-    public  void testAddNewAdminWithBlankPassword() {
-        Admin admin=new Admin();
+    public void testAddNewAdminWithBlankPassword() {
+        Admin admin = new Admin();
         admin.setName("Admin");
         admin.setEmail("admin@gmail.com");
         admin.setPassword(" ");
-        assertEquals("Not Submited Sucessfully",adminService.addNewAdmin(admin));
+        assertEquals("Not Submitted Successfully", adminService.addNewAdmin(admin));
     }
+
     @Test
-    public  void testAddNewAdminWithBlankFields() {
-        Admin admin=new Admin();
+    public void testAddNewAdminWithBlankFields() {
+        Admin admin = new Admin();
         admin.setName(" ");
         admin.setEmail(" ");
         admin.setPassword(" ");
-        assertEquals("Not Submited Sucessfully",adminService.addNewAdmin(admin));
+        assertEquals("Not Submitted Successfully", adminService.addNewAdmin(admin));
     }
+
     @Test(expected = IllegalArgumentException.class)
-    public  void testAddEmptyNewAdmin() {
+    public void testAddEmptyNewAdmin() {
         Admin admin = null;
         adminService.addNewAdmin(admin);
     }
+
     @Test
-    public  void testAddNewAdminWithoutData() {
-        Admin admin=new Admin();
-        assertEquals("Not Submited Sucessfully", adminService.addNewAdmin(admin));
+    public void testAddNewAdminWithoutData() {
+        Admin admin = new Admin();
+        assertEquals("Not Submitted Successfully", adminService.addNewAdmin(admin));
     }
 
-    //test case for remove admin
     @Test
-    public  void testremoveAdmin() {
-        Mockito.when(adminDao.removeAdmin(1)).thenReturn("Admin Succesfully deleted");
-        assertEquals("Admin Succesfully deleted",adminService.removeAdmin(1));
+    public void testremoveAdmin() {
+        Mockito.when(adminDao.removeAdmin(1)).thenReturn("Admin Successfully deleted");
+        assertEquals("Admin Successfully deleted", adminService.removeAdmin(1));
     }
+
     @Test(expected = IllegalArgumentException.class)
-    public  void testremoveAdminByFalseValue() {
+    public void testremoveAdminByFalseValue() {
         adminService.removeAdmin(-1);
     }
 
     @Test
-    public void testForAdminWhichNotPresent()
-    {
+    public void testForAdminWhichNotPresent() {
         Mockito.when(adminDao.removeAdmin(5)).thenReturn(null);
-        assertEquals("Cannot Delete Admin",adminService.removeAdmin(5));
+        assertEquals("Cannot Delete Admin", adminService.removeAdmin(5));
     }
 }
