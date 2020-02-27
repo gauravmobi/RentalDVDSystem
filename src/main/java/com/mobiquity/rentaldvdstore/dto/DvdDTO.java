@@ -11,9 +11,9 @@ import javax.persistence.Table;
 @Entity
 @Table(name ="Criteria")
 public class Criteria {
-    @Enumerated(EnumType.ORDINAL)
+    @Enumerated(EnumType.STRING)
     private Genre genre;
-    @Enumerated(EnumType.ORDINAL)
+    @Enumerated(EnumType.STRING)
     private Language language;
     private String actor;
     private String director;
