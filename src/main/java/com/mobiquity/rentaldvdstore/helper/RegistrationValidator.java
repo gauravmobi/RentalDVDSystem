@@ -5,9 +5,6 @@ import java.util.regex.Pattern;
 
 public class RegistrationValidator {
 
-    public RegistrationValidator() {
-    }
-
     private static Pattern pattern;
     private static Matcher matcher;
 

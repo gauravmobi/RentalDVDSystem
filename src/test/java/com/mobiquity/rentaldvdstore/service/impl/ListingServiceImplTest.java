@@ -42,16 +42,10 @@ public class ListingServiceImplTest {
         assertEquals(films, listingService.getAllFilms());
     }
 
-    @Test(expected = RuntimeException.class)
-    public void testForEmptyList() {
-        listingService.getAllFilms();
-    }
-
     private Dvd addvalue(String titleName, String description, int year, int duration, int rate, double rating) {
         Dvd dvd = new Dvd();
         dvd.setTitle(titleName);
         dvd.setDescription(description);
-        dvd.setReleaseYear(year);
         dvd.setRentalDuration(duration);
         dvd.setRentalRate(rate);
         dvd.setRating(rating);
@@ -95,19 +89,6 @@ public class ListingServiceImplTest {
         Mockito.when(listingDao.getDvdRentedCustomersList()).thenReturn(rentalList);
         assertEquals(rentalList, listingService.getDvdRentedCustomersList());
     }
-
-//    private Customer addCustomer(String firstName, String lastName, String email, Boolean active, String address, String mobileNo) {
-//        Customer customer = new Customer();
-//        Address address1 = new Address();
-//        address1.setAddress(address);
-//        customer.setActive(active);
-//        customer.setAddress_id(address1);
-//        customer.setEmail(email);
-//        customer.setFirst_name(firstName);
-//        customer.setLast_name(lastName);
-//        customer.setMobile_no(mobileNo);
-//        return customer;
-//    }
 
     private Customer getCustomerObject(Long id, String fname, String lname, String email, Boolean active, String password,
                                        String mobno, Address address) {

@@ -19,17 +19,19 @@ public class ListingDaoImpl implements ListingDao {
 
     @Override
     public List<Dvd> getAllFilms() {
-        return null;
+        Query query = entityManager.createQuery("FROM Dvd", Dvd.class);
+        return query.getResultList();
     }
 
     @Override
     public List<Rental> getDvdRentedCustomersList() {
+
         return null;
     }
 
     @Override
     public List<Customer> getAllCustomers() {
-        Query query=entityManager.createQuery("FROM Customer",Customer.class);
+        Query query = entityManager.createQuery("FROM Customer", Customer.class);
         return query.getResultList();
     }
 

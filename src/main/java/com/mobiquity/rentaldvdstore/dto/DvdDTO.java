@@ -1,9 +1,9 @@
-package com.mobiquity.rentaldvdstore.pojo;
+package com.mobiquity.rentaldvdstore.dto;
 
 import com.mobiquity.rentaldvdstore.enums.Genre;
 import com.mobiquity.rentaldvdstore.enums.Language;
 
-public class Criteria {
+public class DvdDTO {
     private Genre genre;
     private Language language;
     private String actor;
@@ -50,14 +50,4 @@ public class Criteria {
         this.year = year;
     }
 
-    @Override
-    public String toString() {
-        return "Criteria{" +
-                "genre=" + genre +
-                ", language=" + language +
-                ", actor='" + actor + '\'' +
-                ", director='" + director + '\'' +
-                ", year='" + year + '\'' +
-                '}';
-    }
 }

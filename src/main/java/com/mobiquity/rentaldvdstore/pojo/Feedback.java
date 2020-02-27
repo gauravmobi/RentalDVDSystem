@@ -28,12 +28,4 @@ public class Feedback {
     public void setFeedbackDescription(String feedbackDescription) {
         this.feedbackDescription = feedbackDescription;
     }
-
-    @Override
-    public String toString() {
-        return "Feedback{" +
-                "id=" + id +
-                ", feedbackDescription='" + feedbackDescription + '\'' +
-                '}';
-    }
 }

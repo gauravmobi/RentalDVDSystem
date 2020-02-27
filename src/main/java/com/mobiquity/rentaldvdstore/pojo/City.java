@@ -4,8 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "City")
-public class City extends MetadataPojo
-{
+public class City extends MetadataPojo {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int city_id;
@@ -14,12 +13,6 @@ public class City extends MetadataPojo
     private Country country_id;
 
     public City() {
-    }
-
-    public City(int city_id, String city, Country country_id) {
-        this.city_id = city_id;
-        this.city = city;
-        this.country_id = country_id;
     }
 
     public int getCity_id() {
