@@ -17,9 +17,9 @@ public class AdminServiceImpl implements AdminService {
             if (null != adminDao.addNewAdmin(admin) && admin.getEmail() != null
                     && admin.getName() != null && admin.getPassword() != null &&
                     admin.getEmail() != "" && admin.getName() != "" && admin.getPassword() != "")
-                return "New Admin Succesfully Added In System";
+                return "New Admin Successfully Added In System";
             else
-                return "Not Submited Sucessfully";
+                return "Not Submitted Successfully";
         } else
             throw new IllegalArgumentException();
     }
@@ -28,7 +28,7 @@ public class AdminServiceImpl implements AdminService {
     public String removeAdmin(int adminId) {
         if (adminId > 0) {
             if (adminDao.removeAdmin(adminId) != null)
-                return "Admin Succesfully deleted";
+                return "Admin Successfully deleted";
             else
                 return "Cannot Delete Admin";
         } else
