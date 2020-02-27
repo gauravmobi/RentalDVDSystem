@@ -1,20 +1,17 @@
 package com.mobiquity.rentaldvdstore.service.impl;
 
 import com.mobiquity.rentaldvdstore.dao.AdminDao;
-import com.mobiquity.rentaldvdstore.dao.LoginDao;
 import com.mobiquity.rentaldvdstore.pojo.Admin;
-import com.mobiquity.rentaldvdstore.service.AdminService;
 import org.junit.Before;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.junit.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.jupiter.api.Assertions.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -30,7 +27,7 @@ public class AdminServiceImplTest {
     public void setup() {
         adminService.setAdminDao(adminDao);
     }
-//test case for add new Admin
+
     @Test
    public  void testAddNewAdmin() {
         Admin admin=new Admin();
@@ -40,6 +37,7 @@ public class AdminServiceImplTest {
         Mockito.when(adminDao.addNewAdmin(admin)).thenReturn("New Admin Succesfully Added In System");
         assertEquals("New Admin Succesfully Added In System",adminService.addNewAdmin(admin));
     }
+
     @Test
     public  void testAddNewAdminWithoutEmail() {
         Admin admin=new Admin();
@@ -47,6 +45,7 @@ public class AdminServiceImplTest {
         admin.setPassword("Admin@123");
         assertEquals("Not Submited Sucessfully",adminService.addNewAdmin(admin));
     }
+
     @Test
     public  void testAddNewAdminWithoutName() {
         Admin admin=new Admin();

@@ -1,15 +1,10 @@
 package com.mobiquity.rentaldvdstore.service.impl;
 
 import com.mobiquity.rentaldvdstore.dao.AdminDao;
-import com.mobiquity.rentaldvdstore.dao.ListingDao;
 import com.mobiquity.rentaldvdstore.pojo.Admin;
-import com.mobiquity.rentaldvdstore.pojo.Dvd;
 import com.mobiquity.rentaldvdstore.service.AdminService;
 
-import java.util.List;
-
 public class AdminServiceImpl implements AdminService {
-
     private AdminDao adminDao;
 
     public void setAdminDao(AdminDao adminDao) {
@@ -18,16 +13,16 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public String addNewAdmin(Admin admin) {
-    if(admin!=null) {
-        if (null != adminDao.addNewAdmin(admin) && admin.getEmail()!=null
-                && admin.getName()!=null && admin.getPassword()!=null &&
-                admin.getEmail()!="" && admin.getName()!="" && admin.getPassword()!="" )
-            return "New Admin Succesfully Added In System";
+        if(admin!=null) {
+            if (null != adminDao.addNewAdmin(admin) && admin.getEmail()!=null
+                    && admin.getName()!=null && admin.getPassword()!=null &&
+                    admin.getEmail()!="" && admin.getName()!="" && admin.getPassword()!="" )
+                return "New Admin Succesfully Added In System";
+            else
+                return "Not Submited Sucessfully";
+        }
         else
-            return "Not Submited Sucessfully";
-    }
-    else
-        throw new IllegalArgumentException();
+            throw new IllegalArgumentException();
     }
 
 
@@ -43,4 +38,3 @@ public class AdminServiceImpl implements AdminService {
             throw new IllegalArgumentException();
     }
 }
-
