@@ -6,9 +6,6 @@ import com.mobiquity.rentaldvdstore.helper.RegistrationValidator;
 import com.mobiquity.rentaldvdstore.pojo.Customer;
 import com.mobiquity.rentaldvdstore.service.RegistrationService;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 public class RegistrationServiceImpl implements RegistrationService {
     private RegistrationDao registrationDao;
 

@@ -4,17 +4,11 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "Country")
-public class Country extends MetadataPojo
-{
+public class Country extends MetadataPojo {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int country_id;
     private String country;
-
-    public Country(int country_id, String country) {
-        this.country_id = country_id;
-        this.country = country;
-    }
 
     public Country() {
     }

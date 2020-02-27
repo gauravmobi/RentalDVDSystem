@@ -51,15 +51,4 @@ public class Rental extends MetadataPojo {
     public void setReturn_date(String return_date) {
         this.return_date = return_date;
     }
-
-    @Override
-    public String toString() {
-        return "Rental{" +
-                "rental_id=" + rental_id +
-                ", rental_date='" + rental_date + '\'' +
-                ", customer_id=" + customer_id +
-                ", return_date='" + return_date + '\'' +
-                ", dvdid=" + dvdid +
-                '}';
-    }
 }

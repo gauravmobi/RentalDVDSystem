@@ -83,16 +83,4 @@ public class Customer extends MetadataPojo {
     public void setMobile_no(String mobile_no) {
         this.mobile_no = mobile_no;
     }
-
-    @Override
-    public String toString() {
-        return "Customer{" +
-                "customer_id=" + customer_id +
-                ", first_name='" + first_name + '\'' +
-                ", last_name='" + last_name + '\'' +
-                ", email='" + email + '\'' +
-                ", active=" + active +
-                ", address_id=" + address_id +
-                '}';
-    }
 }

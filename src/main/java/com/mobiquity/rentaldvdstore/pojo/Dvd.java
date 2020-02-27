@@ -13,11 +13,12 @@ public class Dvd extends MetadataPojo {
     private int filmId;
     private String title;
     private String description;
-    private int releaseYear;
     private int rentalDuration;
     private int rentalRate;
     private double rating;
+    @Enumerated(EnumType.STRING)
     private Genre genre;
+    @Enumerated(EnumType.STRING)
     private Language language;
     private String director;
     private String actor;
@@ -87,14 +88,6 @@ public class Dvd extends MetadataPojo {
         this.description = description;
     }
 
-    public int getReleaseYear() {
-        return releaseYear;
-    }
-
-    public void setReleaseYear(int releaseYear) {
-        this.releaseYear = releaseYear;
-    }
-
     public int getRentalDuration() {
         return rentalDuration;
     }
@@ -117,23 +110,5 @@ public class Dvd extends MetadataPojo {
 
     public void setRating(double rating) {
         this.rating = rating;
-    }
-
-    @Override
-    public String toString() {
-        return "Dvd{" +
-                "filmId=" + filmId +
-                ", title='" + title + '\'' +
-                ", description='" + description + '\'' +
-                ", releaseYear=" + releaseYear +
-                ", rentalDuration=" + rentalDuration +
-                ", rentalRate=" + rentalRate +
-                ", rating=" + rating +
-                ", genre=" + genre +
-                ", language=" + language +
-                ", director='" + director + '\'' +
-                ", actor='" + actor + '\'' +
-                ", year='" + year + '\'' +
-                '}';
     }
 }

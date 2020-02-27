@@ -3,7 +3,7 @@ package com.mobiquity.rentaldvdstore.service.impl;
 
 import com.mobiquity.rentaldvdstore.dao.ListingDao;
 import com.mobiquity.rentaldvdstore.dao.SearchDvdDao;
-import com.mobiquity.rentaldvdstore.pojo.Criteria;
+import com.mobiquity.rentaldvdstore.dto.DvdDTO;
 import com.mobiquity.rentaldvdstore.pojo.Dvd;
 import com.mobiquity.rentaldvdstore.service.SearchDvdService;
 
@@ -24,37 +24,35 @@ public class SearchDvdServiceimpl implements SearchDvdService {
     }
 
     @Override
-    public List<Dvd> selectDvdByCriteria(Criteria criteria) {
-        HashMap<String, String> categoryMap=new HashMap<>();
-        if(criteria != null){
-            if(criteria.getGenre() != null){
-                categoryMap.put("Genre",criteria.getGenre().toString());
+    public List<Dvd> selectDvdByCriteria(DvdDTO dvdDTO) {
+        HashMap<String, String> categoryMap = new HashMap<>();
+        if (dvdDTO != null) {
+            if (dvdDTO.getGenre() != null) {
+                categoryMap.put("Genre", dvdDTO.getGenre().toString());
 
             }
-            if(criteria.getLanguage() != null){
-                categoryMap.put("Language",criteria.getLanguage().toString());
+            if (dvdDTO.getLanguage() != null) {
+                categoryMap.put("Language", dvdDTO.getLanguage().toString());
 
             }
-            if(criteria.getActor() != null){
-                categoryMap.put("Actor",criteria.getActor());
+            if (dvdDTO.getActor() != null) {
+                categoryMap.put("Actor", dvdDTO.getActor());
 
             }
-            if(criteria.getDirector() != null){
-                categoryMap.put("Director",criteria.getDirector());
+            if (dvdDTO.getDirector() != null) {
+                categoryMap.put("Director", dvdDTO.getDirector());
 
             }
-            if(criteria.getYear() != null){
-                categoryMap.put("Year",criteria.getYear());
+            if (dvdDTO.getYear() != null) {
+                categoryMap.put("Year", dvdDTO.getYear());
 
             }
-            if(categoryMap.isEmpty()) {
+            if (categoryMap.isEmpty()) {
                 return listingDao.getAllFilms();
-            }
-            else {
+            } else {
                 return searchDvdDao.selectDvdByCriteria(categoryMap);
             }
-
-        }else {
+        } else {
             throw new IllegalArgumentException();
         }
     }

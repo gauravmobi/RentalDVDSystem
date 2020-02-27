@@ -1,19 +1,10 @@
-package com.mobiquity.rentaldvdstore.pojo;
+package com.mobiquity.rentaldvdstore.dto;
 
 import com.mobiquity.rentaldvdstore.enums.Genre;
 import com.mobiquity.rentaldvdstore.enums.Language;
 
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.Table;
-
-@Entity
-@Table(name ="Criteria")
-public class Criteria {
-    @Enumerated(EnumType.STRING)
+public class DvdDTO {
     private Genre genre;
-    @Enumerated(EnumType.STRING)
     private Language language;
     private String actor;
     private String director;
@@ -59,14 +50,4 @@ public class Criteria {
         this.year = year;
     }
 
-    @Override
-    public String toString() {
-        return "Criteria{" +
-                "genre=" + genre +
-                ", language=" + language +
-                ", actor='" + actor + '\'' +
-                ", director='" + director + '\'' +
-                ", year='" + year + '\'' +
-                '}';
-    }
 }

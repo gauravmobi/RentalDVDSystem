@@ -13,28 +13,25 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public String addNewAdmin(Admin admin) {
-        if(admin!=null) {
-            if (null != adminDao.addNewAdmin(admin) && admin.getEmail()!=null
-                    && admin.getName()!=null && admin.getPassword()!=null &&
-                    admin.getEmail()!="" && admin.getName()!="" && admin.getPassword()!="" )
+        if (admin != null) {
+            if (null != adminDao.addNewAdmin(admin) && admin.getEmail() != null
+                    && admin.getName() != null && admin.getPassword() != null &&
+                    admin.getEmail() != "" && admin.getName() != "" && admin.getPassword() != "")
                 return "New Admin Succesfully Added In System";
             else
                 return "Not Submited Sucessfully";
-        }
-        else
+        } else
             throw new IllegalArgumentException();
     }
 
-
     @Override
     public String removeAdmin(int adminId) {
-        if(adminId>0) {
-            if (adminDao.removeAdmin(adminId)!=null)
+        if (adminId > 0) {
+            if (adminDao.removeAdmin(adminId) != null)
                 return "Admin Succesfully deleted";
             else
                 return "Cannot Delete Admin";
-        }
-        else
+        } else
             throw new IllegalArgumentException();
     }
 }

@@ -22,21 +22,12 @@ public class ListingServiceImpl implements ListingService {
 
     @Override
     public List<Dvd> getAllFilms() {
-        if(!listingDao.getAllFilms().isEmpty())
-            return listingDao.getAllFilms();
-        else
-            throw new IllegalArgumentException("Result Not Found");
+        return listingDao.getAllFilms();
     }
 
     @Override
     public List<Rental> getDvdRentedCustomersList() {
-        if(!listingDao.getDvdRentedCustomersList().isEmpty())
-        {
-            return listingDao.getDvdRentedCustomersList();
-        }
-        else {
-            throw new IllegalArgumentException();
-        }
+        return listingDao.getDvdRentedCustomersList();
     }
 
     @Override

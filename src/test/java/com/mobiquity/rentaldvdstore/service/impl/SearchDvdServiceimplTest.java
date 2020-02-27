@@ -4,7 +4,7 @@ import com.mobiquity.rentaldvdstore.dao.ListingDao;
 import com.mobiquity.rentaldvdstore.dao.SearchDvdDao;
 import com.mobiquity.rentaldvdstore.enums.Genre;
 import com.mobiquity.rentaldvdstore.enums.Language;
-import com.mobiquity.rentaldvdstore.pojo.Criteria;
+import com.mobiquity.rentaldvdstore.dto.DvdDTO;
 import com.mobiquity.rentaldvdstore.pojo.Dvd;
 import org.junit.Before;
 import org.junit.Test;
@@ -16,7 +16,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -44,148 +43,148 @@ public class SearchDvdServiceimplTest {
 
     @Test
     public void testSelectDvdByCriteriaWhenGenreIsEmpty() {
-        Criteria criteria = new Criteria();
+        DvdDTO dvdDTO = new DvdDTO();
         Dvd dvd = new Dvd();
         dvd.setGenre(Genre.THRILLER);
-        criteria.setGenre(null);
-        searchDvdServiceimpl.selectDvdByCriteria(criteria);
+        dvdDTO.setGenre(null);
+        searchDvdServiceimpl.selectDvdByCriteria(dvdDTO);
     }
 
     @Test
     public void testSelectDvdByCriteriaWhenAllCriteriaAttrsAreEmpty() {
-        Criteria criteria = new Criteria();
+        DvdDTO dvdDTO = new DvdDTO();
         List<Dvd> dvds = new ArrayList<>();
         Dvd dvd = new Dvd();
         dvds.add(dvd);
         Mockito.when(listingDao.getAllFilms()).thenReturn(dvds);
-        assertEquals(dvds, searchDvdServiceimpl.selectDvdByCriteria(criteria));
+        assertEquals(dvds, searchDvdServiceimpl.selectDvdByCriteria(dvdDTO));
     }
 
     @Test
     public void testSelectDvdByCriteriaByGenre() {
-        Criteria criteria = new Criteria();
+        DvdDTO dvdDTO = new DvdDTO();
         Dvd dvd = new Dvd();
         dvd.setGenre(Genre.THRILLER);
-        criteria.setGenre(Genre.THRILLER);
+        dvdDTO.setGenre(Genre.THRILLER);
         List<Dvd> list = new ArrayList<Dvd>();
         list.add(dvd);
 
         HashMap<String, String> categoryMap=new HashMap<>();
-        categoryMap.put("Genre",criteria.getGenre().toString());
+        categoryMap.put("Genre", dvdDTO.getGenre().toString());
 
         Mockito.when(searchDvdDao.selectDvdByCriteria(categoryMap))
                 .thenReturn(list);
-        assertEquals(list,searchDvdServiceimpl.selectDvdByCriteria(criteria));
+        assertEquals(list,searchDvdServiceimpl.selectDvdByCriteria(dvdDTO));
     }
 
     @Test
     public void testSelectDvdByCriteriaByLanguage() {
-        Criteria criteria = new Criteria();
+        DvdDTO dvdDTO = new DvdDTO();
         Dvd dvd = new Dvd();
 
         dvd.setLanguage(Language.ENGLISH);
-        criteria.setLanguage(Language.ENGLISH);
+        dvdDTO.setLanguage(Language.ENGLISH);
 
         List<Dvd> list = new ArrayList<Dvd>();
         list.add(dvd);
 
         HashMap<String, String> categoryMap=new HashMap<>();
-        categoryMap.put("Language",criteria.getLanguage().toString());
+        categoryMap.put("Language", dvdDTO.getLanguage().toString());
 
         Mockito.when(searchDvdDao.selectDvdByCriteria(categoryMap))
                 .thenReturn(list);
-        assertEquals(list,searchDvdServiceimpl.selectDvdByCriteria(criteria));
+        assertEquals(list,searchDvdServiceimpl.selectDvdByCriteria(dvdDTO));
     }
 
     @Test
     public void testSelectDvdByCriteriaByActor() {
-        Criteria criteria = new Criteria();
+        DvdDTO dvdDTO = new DvdDTO();
         Dvd dvd = new Dvd();
 
         dvd.setActor("Amir Khan");
-        criteria.setActor("Amir Khan");
+        dvdDTO.setActor("Amir Khan");
 
         List<Dvd> list = new ArrayList<Dvd>();
         list.add(dvd);
 
         HashMap<String, String> categoryMap=new HashMap<>();
-        categoryMap.put("Actor",criteria.getActor().toString());
+        categoryMap.put("Actor", dvdDTO.getActor().toString());
 
         Mockito.when(searchDvdDao.selectDvdByCriteria(categoryMap))
                 .thenReturn(list);
-        assertEquals(list,searchDvdServiceimpl.selectDvdByCriteria(criteria));
+        assertEquals(list,searchDvdServiceimpl.selectDvdByCriteria(dvdDTO));
     }
 
     @Test
     public void testSelectDvdByCriteriaByDirector() {
-        Criteria criteria = new Criteria();
+        DvdDTO dvdDTO = new DvdDTO();
         Dvd dvd = new Dvd();
 
         dvd.setDirector("SLB");
-        criteria.setDirector("SLB");
+        dvdDTO.setDirector("SLB");
 
         List<Dvd> list = new ArrayList<Dvd>();
         list.add(dvd);
 
         HashMap<String, String> categoryMap=new HashMap<>();
-        categoryMap.put("Director",criteria.getDirector().toString());
+        categoryMap.put("Director", dvdDTO.getDirector().toString());
 
         Mockito.when(searchDvdDao.selectDvdByCriteria(categoryMap))
                 .thenReturn(list);
-        assertEquals(list,searchDvdServiceimpl.selectDvdByCriteria(criteria));
+        assertEquals(list,searchDvdServiceimpl.selectDvdByCriteria(dvdDTO));
     }
 
     @Test
     public void testSelectDvdByCriteriaByYear() {
-        Criteria criteria = new Criteria();
+        DvdDTO dvdDTO = new DvdDTO();
         Dvd dvd = new Dvd();
 
         dvd.setYear("2010");
-        criteria.setYear("2010");
+        dvdDTO.setYear("2010");
 
         List<Dvd> list = new ArrayList<Dvd>();
         list.add(dvd);
 
         HashMap<String, String> categoryMap=new HashMap<>();
-        categoryMap.put("Year",criteria.getYear().toString());
+        categoryMap.put("Year", dvdDTO.getYear().toString());
 
         Mockito.when(searchDvdDao.selectDvdByCriteria(categoryMap))
                 .thenReturn(list);
-        assertEquals(list,searchDvdServiceimpl.selectDvdByCriteria(criteria));
+        assertEquals(list,searchDvdServiceimpl.selectDvdByCriteria(dvdDTO));
     }
 
     @Test
     public void testSelectDvdByAllCriteria() {
-        Criteria criteria = new Criteria();
+        DvdDTO dvdDTO = new DvdDTO();
         Dvd dvd = new Dvd();
 
         dvd.setGenre(Genre.THRILLER);
-        criteria.setGenre(Genre.THRILLER);
+        dvdDTO.setGenre(Genre.THRILLER);
 
         dvd.setLanguage(Language.ENGLISH);
-        criteria.setLanguage(Language.ENGLISH);
+        dvdDTO.setLanguage(Language.ENGLISH);
 
         dvd.setActor("Amir Khan");
-        criteria.setActor("Amir Khan");
+        dvdDTO.setActor("Amir Khan");
 
         dvd.setDirector("SLB");
-        criteria.setDirector("SLB");
+        dvdDTO.setDirector("SLB");
 
         dvd.setYear("2010");
-        criteria.setYear("2010");
+        dvdDTO.setYear("2010");
 
         List<Dvd> list = new ArrayList<Dvd>();
         list.add(dvd);
 
         HashMap<String, String> categoryMap=new HashMap<>();
-        categoryMap.put("Genre",criteria.getGenre().toString());
-        categoryMap.put("Language",criteria.getLanguage().toString());
-        categoryMap.put("Actor",criteria.getActor());
-        categoryMap.put("Director",criteria.getDirector());
-        categoryMap.put("Year",criteria.getYear());
+        categoryMap.put("Genre", dvdDTO.getGenre().toString());
+        categoryMap.put("Language", dvdDTO.getLanguage().toString());
+        categoryMap.put("Actor", dvdDTO.getActor());
+        categoryMap.put("Director", dvdDTO.getDirector());
+        categoryMap.put("Year", dvdDTO.getYear());
 
         Mockito.when(searchDvdDao.selectDvdByCriteria(categoryMap))
                 .thenReturn(list);
-        assertEquals(list,searchDvdServiceimpl.selectDvdByCriteria(criteria));
+        assertEquals(list,searchDvdServiceimpl.selectDvdByCriteria(dvdDTO));
     }
 }
