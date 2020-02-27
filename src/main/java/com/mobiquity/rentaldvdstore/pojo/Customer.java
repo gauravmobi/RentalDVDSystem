@@ -3,7 +3,7 @@ package com.mobiquity.rentaldvdstore.pojo;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "customer")
+@Table(name = "Customer")
 public class Customer extends MetadataPojo {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

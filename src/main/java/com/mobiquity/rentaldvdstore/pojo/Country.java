@@ -3,7 +3,7 @@ package com.mobiquity.rentaldvdstore.pojo;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "country")
+@Table(name = "Country")
 public class Country extends MetadataPojo
 {
     @Id

@@ -3,11 +3,13 @@ package com.mobiquity.rentaldvdstore.service.impl;
 import com.mobiquity.rentaldvdstore.dao.ListingDao;
 import com.mobiquity.rentaldvdstore.pojo.Customer;
 import com.mobiquity.rentaldvdstore.pojo.Dvd;
+import com.mobiquity.rentaldvdstore.pojo.Rental;
 import com.mobiquity.rentaldvdstore.service.ListingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
 @Service
 public class ListingServiceImpl implements ListingService {
 
@@ -20,11 +22,43 @@ public class ListingServiceImpl implements ListingService {
 
     @Override
     public List<Dvd> getAllFilms() {
-        return listingDao.getAllFilms();
+        if(!listingDao.getAllFilms().isEmpty())
+            return listingDao.getAllFilms();
+        else
+            throw new IllegalArgumentException("Result Not Found");
+    }
+
+    @Override
+    public List<Rental> getDvdRentedCustomersList() {
+        if(!listingDao.getDvdRentedCustomersList().isEmpty())
+        {
+            return listingDao.getDvdRentedCustomersList();
+        }
+        else {
+            throw new IllegalArgumentException();
+        }
     }
 
     @Override
     public List<Customer> getAllCustomers() {
+        List<Customer> customerList = listingDao.getAllCustomers();
         return listingDao.getAllCustomers();
+    }
+
+    @Override
+    public List<Customer> getListOfAllActiveCustomers() {
+        List<Customer> customerslist = null;
+        if (listingDao.getListOfAllActiveCustomers() != null) {
+            if (!listingDao.getListOfAllActiveCustomers().isEmpty()) {
+                customerslist = listingDao.getListOfAllActiveCustomers();
+                for (Customer c : customerslist) {
+                    if (!c.getActive()) {
+                        customerslist.remove(c);
+                    }
+                }
+            }
+            return customerslist;
+        } else
+            throw new IllegalArgumentException("Customer Not Found");
     }
 }
