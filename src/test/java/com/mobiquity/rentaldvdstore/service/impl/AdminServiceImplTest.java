@@ -20,6 +20,8 @@ public class AdminServiceImplTest {
 
     private AdminServiceImpl adminService=new AdminServiceImpl();
 
+    //test
+
     @Mock
     AdminDao adminDao;
 
