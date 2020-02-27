@@ -1,6 +1,8 @@
 package com.mobiquity.rentaldvdstore.service.impl;
 
 import com.mobiquity.rentaldvdstore.dao.ListingDao;
+import com.mobiquity.rentaldvdstore.pojo.Address;
+import com.mobiquity.rentaldvdstore.pojo.Customer;
 import com.mobiquity.rentaldvdstore.pojo.Dvd;
 import org.junit.Before;
 import org.junit.Test;
@@ -40,11 +42,6 @@ public class ListingServiceImplTest {
         assertEquals(films, listingService.getAllFilms());
     }
 
-    @Test(expected = RuntimeException.class)
-    public void testForEmptyList() {
-        listingService.getAllFilms();
-    }
-
     private Dvd addvalue(String titleName, String description, int year, int duration, int rate, double rating) {
         Dvd dvd = new Dvd();
         dvd.setTitle(titleName);
@@ -55,6 +52,30 @@ public class ListingServiceImplTest {
         dvd.setRating(rating);
         return dvd;
     }
+
+    @Test
+    public void testGetAllCustomers(){
+
+        List<Customer> customerList = new ArrayList<>();
+        customerList.add(addCustomer("dipak","Balsa ntosh","diapk@gmail",false,"karad","1234567890"));
+        customerList.add(addCustomer("nisarg","Turke","nisarg@gmail",true,"pune","0123456789"));
+        Mockito.when(listingDao.getAllCustomers()).thenReturn(customerList);
+        assertEquals(customerList,listingService.getAllCustomers());
+    }
+
+    private Customer addCustomer(String firstName, String lastName, String email, Boolean active, String address, String mobileNo) {
+        Customer customer = new Customer();
+        Address address1 = new Address();
+        address1.setAddress(address);
+        customer.setActive(active);
+        customer.setAddress_id(address1);
+        customer.setEmail(email);
+        customer.setFirst_name(firstName);
+        customer.setLast_name(lastName);
+        customer.setMobile_no(mobileNo);
+        return  customer;
+    }
+
 
 
 }

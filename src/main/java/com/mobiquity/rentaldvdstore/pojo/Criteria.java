@@ -3,8 +3,17 @@ package com.mobiquity.rentaldvdstore.pojo;
 import com.mobiquity.rentaldvdstore.enums.Genre;
 import com.mobiquity.rentaldvdstore.enums.Language;
 
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.Table;
+
+@Entity
+@Table(name ="Criteria")
 public class Criteria {
+    @Enumerated(EnumType.ORDINAL)
     private Genre genre;
+    @Enumerated(EnumType.ORDINAL)
     private Language language;
     private String actor;
     private String director;

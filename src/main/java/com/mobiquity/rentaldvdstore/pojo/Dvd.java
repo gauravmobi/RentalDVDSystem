@@ -3,7 +3,13 @@ package com.mobiquity.rentaldvdstore.pojo;
 import com.mobiquity.rentaldvdstore.enums.Genre;
 import com.mobiquity.rentaldvdstore.enums.Language;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name="Dvd")
 public class Dvd extends MetadataPojo {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int filmId;
     private String title;
     private String description;

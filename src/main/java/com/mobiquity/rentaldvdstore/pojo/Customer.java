@@ -1,23 +1,30 @@
 package com.mobiquity.rentaldvdstore.pojo;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "customer")
 public class Customer extends MetadataPojo {
-    private int customer_id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long customer_id;
     private String first_name;
     private String last_name;
     private String email;
     private Boolean active;
     private String password;
+    @OneToOne
     private Address address_id;
     private String mobile_no;
 
     public Customer() {
     }
 
-    public int getCustomer_id() {
+    public Long getCustomer_id() {
         return customer_id;
     }
 
-    public void setCustomer_id(int customer_id) {
+    public void setCustomer_id(Long customer_id) {
         this.customer_id = customer_id;
     }
 

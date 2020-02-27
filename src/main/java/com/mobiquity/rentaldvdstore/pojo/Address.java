@@ -1,10 +1,16 @@
 package com.mobiquity.rentaldvdstore.pojo;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "address")
 public class Address extends MetadataPojo
 {
-    private int address_id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)private int address_id;
     private String address;
     private String district;
+    @OneToOne
     private City city_id;
     private int postal_code;
     private String location;
