@@ -1,6 +1,8 @@
 package com.mobiquity.rentaldvdstore.pojo;
 
+import javax.persistence.ManyToOne;
 public class Feedback {
+    @ManyToOne
     private Customer id;
     private String feedbackDescription;
 

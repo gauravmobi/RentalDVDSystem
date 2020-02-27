@@ -57,6 +57,14 @@ public class ListingServiceImplTest {
         dvd.setRating(rating);
         return dvd;
     }
+    @Test
+    public void testGetAllFilmsForAdmin() {
+        List<Dvd> films = new ArrayList<Dvd>();
+        films.add(addvalue("ABCD", "good movie", 2012, 5, 100, 2.5));
+        films.add(addvalue("ABCD2", "good movie too", 2016, 5, 500, 4.5));
+        Mockito.when(listingDao.getAllFilms()).thenReturn(films);
+        assertEquals(films, listingService.getAllFilms());
+    }
 
     private Rental addRentalList(int rental_id, String rental_date, Long customer_id, String return_date,
                                  int dvdid) {
