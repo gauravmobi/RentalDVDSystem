@@ -5,8 +5,12 @@ import com.mobiquity.rentaldvdstore.dao.RegistrationDao;
 import com.mobiquity.rentaldvdstore.helper.RegistrationValidator;
 import com.mobiquity.rentaldvdstore.pojo.Customer;
 import com.mobiquity.rentaldvdstore.service.RegistrationService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class RegistrationServiceImpl implements RegistrationService {
+    @Autowired
     private RegistrationDao registrationDao;
 
     public void setRegistrationDao(RegistrationDao registrationDao) {
@@ -20,10 +24,10 @@ public class RegistrationServiceImpl implements RegistrationService {
                     && RegistrationValidator.validatePasswordPattern(customer.getPassword())
                     && RegistrationValidator.validateMobileNoPattern(customer.getMobile_no())) {
                 try {
-                    if (null != registrationDao.userRegistration(customer)) {
-                        return "Registration Success";
-                    } else {
+                    if (null!=registrationDao.userRegistration(customer)) {
                         return "Registration Failed";
+                    } else {
+                        return "Registration Success";
                     }
                 } catch (Exception e) {
                     return "Registration Failed";

@@ -1,6 +1,5 @@
 package com.mobiquity.rentaldvdstore.dao.impl;
 
-
 import com.mobiquity.rentaldvdstore.dao.ListingDao;
 import com.mobiquity.rentaldvdstore.pojo.Customer;
 import com.mobiquity.rentaldvdstore.pojo.Dvd;
@@ -25,7 +24,6 @@ public class ListingDaoImpl implements ListingDao {
 
     @Override
     public List<Rental> getDvdRentedCustomersList() {
-
         return null;
     }
 
@@ -37,6 +35,7 @@ public class ListingDaoImpl implements ListingDao {
 
     @Override
     public List<Customer> getListOfAllActiveCustomers() {
-        return null;
+        Query query = entityManager.createQuery("FROM Customer where active = true",Customer.class);
+        return query.getResultList();
     }
 }

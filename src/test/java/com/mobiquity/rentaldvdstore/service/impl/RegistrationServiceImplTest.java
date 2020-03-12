@@ -1,12 +1,10 @@
 package com.mobiquity.rentaldvdstore.service.impl;
 
-import com.mobiquity.rentaldvdstore.dao.LoginDao;
 import com.mobiquity.rentaldvdstore.dao.RegistrationDao;
-import com.mobiquity.rentaldvdstore.helper.RegistrationValidator;
-import com.mobiquity.rentaldvdstore.pojo.*;
-import com.mobiquity.rentaldvdstore.service.impl.LoginServiceImpl;
-import com.mobiquity.rentaldvdstore.service.impl.RegistrationServiceImpl;
-import org.junit.Assert;
+import com.mobiquity.rentaldvdstore.pojo.Address;
+import com.mobiquity.rentaldvdstore.pojo.City;
+import com.mobiquity.rentaldvdstore.pojo.Country;
+import com.mobiquity.rentaldvdstore.pojo.Customer;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,7 +14,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest

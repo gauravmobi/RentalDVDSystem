@@ -1,7 +1,5 @@
 package com.mobiquity.rentaldvdstore.pojo;
 
-import java.util.Date;
-
 public class Rental extends MetadataPojo {
     private int rental_id;
     private String rental_date;
