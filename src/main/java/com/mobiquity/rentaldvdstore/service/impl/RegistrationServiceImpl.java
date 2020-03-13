@@ -25,9 +25,9 @@ public class RegistrationServiceImpl implements RegistrationService {
                     && RegistrationValidator.validateMobileNoPattern(customer.getMobile_no())) {
                 try {
                     if (null!=registrationDao.userRegistration(customer)) {
-                        return "Registration Failed";
-                    } else {
                         return "Registration Success";
+                    } else {
+                        return "Registration Failed";
                     }
                 } catch (Exception e) {
                     return "Registration Failed";

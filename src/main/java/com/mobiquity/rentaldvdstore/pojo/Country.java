@@ -1,24 +1,36 @@
 package com.mobiquity.rentaldvdstore.pojo;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "Country")
 public class Country extends MetadataPojo {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int country_id;
+    private int countryId;
     private String country;
+
+    @OneToMany(cascade = {CascadeType.ALL},fetch= FetchType.EAGER, mappedBy = "country")
+    private List<City> city;
+
+    public List<City> getCity() {
+        return city;
+    }
+    public void setCity(List<City> city) {
+        this.city = city;
+    }
 
     public Country() {
     }
 
-    public int getCountry_id() {
-        return country_id;
+    public int getCountryId() {
+        return countryId;
     }
 
-    public void setCountry_id(int country_id) {
-        this.country_id = country_id;
+
+    public void setCountryId(int countryId) {
+        this.countryId = countryId;
     }
 
     public String getCountry() {

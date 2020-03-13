@@ -5,10 +5,7 @@ import com.mobiquity.rentaldvdstore.service.ListingService;
 import com.mobiquity.rentaldvdstore.service.LoginService;
 import com.mobiquity.rentaldvdstore.service.RegistrationService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -38,7 +35,8 @@ public class CustomerController {
     }
 
     @PostMapping("registration")
-    public String customerRegistration(Customer customer){
+    public String customerRegistration(@RequestBody Customer customer){
+        System.out.println(customer);
         return registrationService.userRegistration(customer);
     }
 }

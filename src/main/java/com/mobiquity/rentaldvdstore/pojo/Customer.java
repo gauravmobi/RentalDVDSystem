@@ -7,41 +7,42 @@ import javax.persistence.*;
 public class Customer extends MetadataPojo {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long customer_id;
-    private String first_name;
-    private String last_name;
+    private Long customerId;
+    private String firstName;
+    private String lastName;
     private String email;
     private Boolean active;
     private String password;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="address_id")
     private Address address_id;
     private String mobile_no;
 
     public Customer() {
     }
 
-    public Long getCustomer_id() {
-        return customer_id;
+    public Long getCustomerId() {
+        return customerId;
     }
 
-    public void setCustomer_id(Long customer_id) {
-        this.customer_id = customer_id;
+    public void setCustomerId(Long customerId) {
+        this.customerId = customerId;
     }
 
-    public String getFirst_name() {
-        return first_name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setFirst_name(String first_name) {
-        this.first_name = first_name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getLast_name() {
-        return last_name;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setLast_name(String last_name) {
-        this.last_name = last_name;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getEmail() {
@@ -87,9 +88,9 @@ public class Customer extends MetadataPojo {
     @Override
     public String toString() {
         return "Customer{" +
-                "customer_id=" + customer_id +
-                ", first_name='" + first_name + '\'' +
-                ", last_name='" + last_name + '\'' +
+                "customer_id=" + customerId +
+                ", first_name='" + firstName + '\'' +
+                ", last_name='" + lastName + '\'' +
                 ", email='" + email + '\'' +
                 ", active=" + active +
                 ", password='" + password + '\'' +

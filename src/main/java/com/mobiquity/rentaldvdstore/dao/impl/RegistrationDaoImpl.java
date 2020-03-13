@@ -3,6 +3,7 @@ package com.mobiquity.rentaldvdstore.dao.impl;
 import com.mobiquity.rentaldvdstore.dao.RegistrationDao;
 import com.mobiquity.rentaldvdstore.pojo.Customer;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -12,18 +13,11 @@ public class RegistrationDaoImpl implements RegistrationDao {
     @PersistenceContext
     EntityManager entityManager;
 
-
+    @Transactional
     @Override
     public String userRegistration(Customer customer) {
-        try {
-            System.out.println(customer);
             entityManager.persist(customer);
             return "Customer Registered Successfully";
-        }
-        catch (Exception e)
-        {
-           throw new RuntimeException();
-        }
     }
 
     @Override

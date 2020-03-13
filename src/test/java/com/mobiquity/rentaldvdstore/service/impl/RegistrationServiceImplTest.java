@@ -32,9 +32,9 @@ public class RegistrationServiceImplTest {
     private Customer getCustomerObject(Long id, String fname, String lname, String email, Boolean active, String password,
                                        String mobno, Address address) {
         Customer customer = new Customer();
-        customer.setCustomer_id(id);
-        customer.setFirst_name(fname);
-        customer.setLast_name(lname);
+        customer.setCustomerId(id);
+        customer.setFirstName(fname);
+        customer.setLastName(lname);
         customer.setActive(active);
         customer.setEmail(email);
         customer.setPassword(password);
@@ -46,7 +46,7 @@ public class RegistrationServiceImplTest {
     private Address getAddressObject(int addressid, String add, String district, int postalcode, String location,
                                      City city) {
         Address address = new Address();
-        address.setAddress_id(addressid);
+        address.setAddressId(addressid);
         address.setAddress(add);
         address.setDistrict(district);
         address.setPostal_code(postalcode);
@@ -57,15 +57,15 @@ public class RegistrationServiceImplTest {
 
     private City getCityObject(int cityid, String cityname, Country country) {
         City city = new City();
-        city.setCity_id(cityid);
+        city.setCityId(cityid);
         city.setCity(cityname);
-        city.setCountry_id(country);
+        city.setCountry(country);
         return city;
     }
 
     private Country getCountryObject(int countryid, String countryname) {
         Country country = new Country();
-        country.setCountry_id(countryid);
+        country.setCountryId(countryid);
         country.setCountry(countryname);
         return country;
     }
