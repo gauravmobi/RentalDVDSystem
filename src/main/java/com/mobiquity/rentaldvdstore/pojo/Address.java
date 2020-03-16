@@ -4,16 +4,16 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "Address")
-public class Address extends MetadataPojo
-{
+public class Address extends MetadataPojo {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int addressId;
     private String address;
     private String district;
-    @OneToOne
-    private City city;
-    private int postalCode;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    private City city_id;
+    private int postal_code;
     private String location;
 
     public Address() {
@@ -43,20 +43,20 @@ public class Address extends MetadataPojo
         this.district = district;
     }
 
-    public City getCity() {
-        return city;
+    public City getCity_id() {
+        return city_id;
     }
 
-    public void setCity(City city) {
-        this.city = city;
+    public void setCity_id(City city_id) {
+        this.city_id = city_id;
     }
 
-    public int getPostalCode() {
-        return postalCode;
+    public int getPostal_code() {
+        return postal_code;
     }
 
-    public void setPostalCode(int postalCode) {
-        this.postalCode = postalCode;
+    public void setPostal_code(int postal_code) {
+        this.postal_code = postal_code;
     }
 
     public String getLocation() {
@@ -65,17 +65,5 @@ public class Address extends MetadataPojo
 
     public void setLocation(String location) {
         this.location = location;
-    }
-
-    @Override
-    public String toString() {
-        return "Address{" +
-                "addressId=" + addressId +
-                ", address='" + address + '\'' +
-                ", district='" + district + '\'' +
-                ", city=" + city +
-                ", postalCode=" + postalCode +
-                ", location='" + location + '\'' +
-                '}';
     }
 }

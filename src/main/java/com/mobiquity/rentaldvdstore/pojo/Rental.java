@@ -1,20 +1,10 @@
 package com.mobiquity.rentaldvdstore.pojo;
 
-import com.sun.org.glassfish.gmbal.ManagedAttribute;
-
-import javax.persistence.*;
-import java.util.Date;
-@Entity
-@Table(name = "Rental")
 public class Rental extends MetadataPojo {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private int rental_id;
     private String rental_date;
-    @ManyToOne
     private Customer customer_id;
     private String return_date;
-    @ManyToOne
     private Dvd dvdid;
 
     public Rental() {

@@ -118,7 +118,7 @@ public class ListingServiceImplTest {
 
     private Country getCountryObject(int countryid, String countryname) {
         Country country = new Country();
-        country.setCountry_id(countryid);
+        country.setCountryId(countryid);
         country.setCountry(countryname);
         return country;
     }

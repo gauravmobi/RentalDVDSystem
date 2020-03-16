@@ -4,21 +4,14 @@ package com.mobiquity.rentaldvdstore.service.impl;
 import com.mobiquity.rentaldvdstore.dao.RegistrationDao;
 import com.mobiquity.rentaldvdstore.helper.RegistrationValidator;
 import com.mobiquity.rentaldvdstore.pojo.Customer;
-import com.mobiquity.rentaldvdstore.repository.CustomerRepository;
 import com.mobiquity.rentaldvdstore.service.RegistrationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
-
 @Service
-@Transactional
 public class RegistrationServiceImpl implements RegistrationService {
     @Autowired
     private RegistrationDao registrationDao;
-
-    @Autowired
-    CustomerRepository customerRepository;
 
     public void setRegistrationDao(RegistrationDao registrationDao) {
         this.registrationDao = registrationDao;
@@ -29,9 +22,9 @@ public class RegistrationServiceImpl implements RegistrationService {
         if (customer != null) {
             if (RegistrationValidator.validateEmailPattern(customer.getEmail())
                     && RegistrationValidator.validatePasswordPattern(customer.getPassword())
-                    && RegistrationValidator.validateMobileNoPattern(customer.getMobileNo())) {
+                    && RegistrationValidator.validateMobileNoPattern(customer.getMobile_no())) {
                 try {
-                    if (null != customerRepository.save(customer)) {
+                    if (null!=registrationDao.userRegistration(customer)) {
                         return "Registration Success";
                     } else {
                         return "Registration Failed";
@@ -45,12 +38,6 @@ public class RegistrationServiceImpl implements RegistrationService {
         } else {
             throw new IllegalArgumentException();
         }
-    }
-
-    @Override
-    public String registerCustomer(Customer customer) {
-
-        return registrationDao.userRegistration(customer);
     }
 
     @Override

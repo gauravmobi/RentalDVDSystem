@@ -9,8 +9,9 @@ public class City extends MetadataPojo {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int cityId;
     private String city;
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "countryId")
+
+    @ManyToOne(cascade = {CascadeType.ALL},fetch= FetchType.EAGER)
+    @JoinColumn(name="country_id")
     private Country country;
 
     public City() {
@@ -40,5 +41,3 @@ public class City extends MetadataPojo {
         this.country = country;
     }
 }
-
-    

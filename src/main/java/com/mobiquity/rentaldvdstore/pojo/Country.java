@@ -10,26 +10,27 @@ public class Country extends MetadataPojo {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int countryId;
     private String country;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "country")
-    private List<City> cityList;
 
-    public List<City> getCityList() {
-        return cityList;
+    @OneToMany(cascade = {CascadeType.ALL},fetch= FetchType.EAGER, mappedBy = "country")
+    private List<City> city;
+
+    public List<City> getCity() {
+        return city;
     }
-
-    public void setCityList(List<City> cityList) {
-        this.cityList = cityList;
+    public void setCity(List<City> city) {
+        this.city = city;
     }
 
     public Country() {
     }
 
-    public int getCountry_id() {
+    public int getCountryId() {
         return countryId;
     }
 
-    public void setCountry_id(int country_id) {
-        this.countryId = country_id;
+
+    public void setCountryId(int countryId) {
+        this.countryId = countryId;
     }
 
     public String getCountry() {

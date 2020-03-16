@@ -6,9 +6,7 @@ import com.mobiquity.rentaldvdstore.pojo.Address;
 import com.mobiquity.rentaldvdstore.pojo.City;
 import com.mobiquity.rentaldvdstore.pojo.Country;
 import com.mobiquity.rentaldvdstore.pojo.Customer;
-import com.mobiquity.rentaldvdstore.service.impl.RegistrationServiceImpl;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,42 +14,18 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
-
-import javax.transaction.Transactional;
-import java.util.List;
+import org.springframework.transaction.annotation.Transactional;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @ContextConfiguration
 public class TestRegistrationDao {
     @Autowired
-    private RegistrationDao registrationDao;
-    @Autowired
     private ListingDao listingDao;
 
-    RegistrationServiceImpl service = new RegistrationServiceImpl();
-    @Before
-    public void setup() {
-        service.setRegistrationDao(registrationDao);
-    }
+    @Autowired
+    private RegistrationDao registrationDao;
 
-    @Test
-    @Transactional
-    @Rollback(true)
-    public void testUserRegistration(){
-        Customer customer = new Customer();
-        Country country = getCountryObject(11, "India");
-        City city = getCityObject(211, "Pune", country);
-        Address address = getAddressObject(20, "Mumbai", "Sangli",
-                415409, "Kolkata", city);
-      customer = getCustomerObject(102L, "SAURABH", "K", "saurabh@gmail.com",
-                true, "abcW$2", "+919999899999", address);
-
-      service.userRegistration(customer);
-        List<Customer> customerList = listingDao.getAllCustomers();
-        Assert.assertEquals("Registration Successfull",registrationDao.userRegistration(customer));
-
-    }
     private Customer getCustomerObject(Long id, String fname, String lname, String email, Boolean active, String password,
                                        String mobno, Address address) {
         Customer customer = new Customer();
@@ -61,8 +35,8 @@ public class TestRegistrationDao {
         customer.setActive(active);
         customer.setEmail(email);
         customer.setPassword(password);
-        customer.setMobileNo(mobno);
-        customer.setAddress(address);
+        customer.setMobile_no(mobno);
+        customer.setAddress_id(address);
         return customer;
     }
 
@@ -72,9 +46,9 @@ public class TestRegistrationDao {
         address.setAddressId(addressid);
         address.setAddress(add);
         address.setDistrict(district);
-        address.setPostalCode(postalcode);
+        address.setPostal_code(postalcode);
         address.setLocation(location);
-        address.setCity(city);
+        address.setCity_id(city);
         return address;
     }
 
@@ -88,9 +62,26 @@ public class TestRegistrationDao {
 
     private Country getCountryObject(int countryid, String countryname) {
         Country country = new Country();
-        country.setCountry_id(countryid);
+        country.setCountryId(countryid);
         country.setCountry(countryname);
         return country;
     }
 
+    @Test
+    @Transactional
+    @Rollback(true)
+    public void testAddDepartment()
+    {
+        Customer customer=new Customer();
+
+        Country country = getCountryObject(9, "India");
+        City city = getCityObject(22, "Pune", country);
+        Address address = getAddressObject(8, "a/p Laxmi chowk 32 Shirala", "Sangli",
+                415408, "Shirala", city);
+        customer = getCustomerObject(6101L, "abc", "b", "abc@gmail.com",
+                true, "abcW$1", "+919999999999", address);
+
+        //List<Customer> customers = listingDao.getAllCustomers();
+        Assert.assertEquals("Customer Registered Successfully", registrationDao.userRegistration(customer));
+    }
 }

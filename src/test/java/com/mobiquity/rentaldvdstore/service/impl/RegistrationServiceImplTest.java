@@ -1,7 +1,10 @@
 package com.mobiquity.rentaldvdstore.service.impl;
 
 import com.mobiquity.rentaldvdstore.dao.RegistrationDao;
-import com.mobiquity.rentaldvdstore.pojo.*;
+import com.mobiquity.rentaldvdstore.pojo.Address;
+import com.mobiquity.rentaldvdstore.pojo.City;
+import com.mobiquity.rentaldvdstore.pojo.Country;
+import com.mobiquity.rentaldvdstore.pojo.Customer;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -11,7 +14,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -35,8 +38,8 @@ public class RegistrationServiceImplTest {
         customer.setActive(active);
         customer.setEmail(email);
         customer.setPassword(password);
-        customer.setMobileNo(mobno);
-        customer.setAddress(address);
+        customer.setMobile_no(mobno);
+        customer.setAddress_id(address);
         return customer;
     }
 
@@ -46,9 +49,9 @@ public class RegistrationServiceImplTest {
         address.setAddressId(addressid);
         address.setAddress(add);
         address.setDistrict(district);
-        address.setPostalCode(postalcode);
+        address.setPostal_code(postalcode);
         address.setLocation(location);
-        address.setCity(city);
+        address.setCity_id(city);
         return address;
     }
 
@@ -62,7 +65,7 @@ public class RegistrationServiceImplTest {
 
     private Country getCountryObject(int countryid, String countryname) {
         Country country = new Country();
-        country.setCountry_id(countryid);
+        country.setCountryId(countryid);
         country.setCountry(countryname);
         return country;
     }
