@@ -14,7 +14,7 @@ public class Customer extends MetadataPojo {
     private Boolean active;
     private String password;
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name="address_id")
+    @JoinColumn(name="addressId")
     private Address address;
     private String mobileNo;
 

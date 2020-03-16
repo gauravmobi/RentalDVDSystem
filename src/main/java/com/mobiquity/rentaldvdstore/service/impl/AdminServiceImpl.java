@@ -3,8 +3,12 @@ package com.mobiquity.rentaldvdstore.service.impl;
 import com.mobiquity.rentaldvdstore.dao.AdminDao;
 import com.mobiquity.rentaldvdstore.pojo.Admin;
 import com.mobiquity.rentaldvdstore.service.AdminService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class AdminServiceImpl implements AdminService {
+    @Autowired
     private AdminDao adminDao;
 
     public void setAdminDao(AdminDao adminDao) {

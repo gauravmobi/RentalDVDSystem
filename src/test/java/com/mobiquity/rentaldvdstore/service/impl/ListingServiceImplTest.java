@@ -62,11 +62,11 @@ public class ListingServiceImplTest {
         customer.setCustomerId(customer_id);
         dvd.setFilmId(dvdid);
 
-        rental.setRental_id(rental_id);
-        rental.setRental_date(rental_date);
-        rental.setCustomer_id(customer);
-        rental.setReturn_date(return_date);
-        rental.setDvdid(dvd);
+        rental.setRentalId(rental_id);
+        rental.setRentalDate(rental_date);
+        rental.setCustomer(customer);
+        rental.setReturnDate(return_date);
+        rental.setDvd(dvd);
         return rental;
     }
 
