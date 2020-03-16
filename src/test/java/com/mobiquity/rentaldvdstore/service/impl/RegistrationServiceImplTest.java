@@ -38,8 +38,8 @@ public class RegistrationServiceImplTest {
         customer.setActive(active);
         customer.setEmail(email);
         customer.setPassword(password);
-        customer.setMobile_no(mobno);
-        customer.setAddress_id(address);
+        customer.setMobileNo(mobno);
+        customer.setAddressId(address);
         return customer;
     }
 

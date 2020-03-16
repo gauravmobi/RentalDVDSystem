@@ -1,18 +1,16 @@
 package com.mobiquity.rentaldvdstore.pojo;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "Admin")
 public class Admin {
-    private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
     private String name;
     private String email;
     private String password;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;
