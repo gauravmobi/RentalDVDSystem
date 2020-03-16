@@ -11,7 +11,7 @@ public class City extends MetadataPojo {
     private String city;
 
     @ManyToOne(cascade = {CascadeType.ALL},fetch= FetchType.EAGER)
-    @JoinColumn(name="country_id")
+    @JoinColumn(name="countryId")
     private Country country;
 
     public City() {

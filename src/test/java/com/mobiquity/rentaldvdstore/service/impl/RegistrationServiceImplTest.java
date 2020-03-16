@@ -39,7 +39,7 @@ public class RegistrationServiceImplTest {
         customer.setEmail(email);
         customer.setPassword(password);
         customer.setMobileNo(mobno);
-        customer.setAddressId(address);
+        customer.setAddress(address);
         return customer;
     }
 
@@ -49,9 +49,9 @@ public class RegistrationServiceImplTest {
         address.setAddressId(addressid);
         address.setAddress(add);
         address.setDistrict(district);
-        address.setPostal_code(postalcode);
+        address.setPostalCode(postalcode);
         address.setLocation(location);
-        address.setCity_id(city);
+        address.setCity(city);
         return address;
     }
 
