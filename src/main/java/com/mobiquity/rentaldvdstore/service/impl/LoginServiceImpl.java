@@ -2,7 +2,9 @@ package com.mobiquity.rentaldvdstore.service.impl;
 
 import com.mobiquity.rentaldvdstore.dao.LoginDao;
 import com.mobiquity.rentaldvdstore.service.LoginService;
+import org.springframework.stereotype.Service;
 
+@Service
 public class LoginServiceImpl implements LoginService {
     private LoginDao loginDao;
 

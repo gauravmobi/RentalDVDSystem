@@ -1,12 +1,7 @@
 package com.mobiquity.rentaldvdstore.service.impl;
 
-import com.mobiquity.rentaldvdstore.dao.LoginDao;
 import com.mobiquity.rentaldvdstore.dao.RegistrationDao;
-import com.mobiquity.rentaldvdstore.helper.RegistrationValidator;
 import com.mobiquity.rentaldvdstore.pojo.*;
-import com.mobiquity.rentaldvdstore.service.impl.LoginServiceImpl;
-import com.mobiquity.rentaldvdstore.service.impl.RegistrationServiceImpl;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -34,34 +29,34 @@ public class RegistrationServiceImplTest {
     private Customer getCustomerObject(Long id, String fname, String lname, String email, Boolean active, String password,
                                        String mobno, Address address) {
         Customer customer = new Customer();
-        customer.setCustomer_id(id);
-        customer.setFirst_name(fname);
-        customer.setLast_name(lname);
+        customer.setCustomerId(id);
+        customer.setFirstName(fname);
+        customer.setLastName(lname);
         customer.setActive(active);
         customer.setEmail(email);
         customer.setPassword(password);
-        customer.setMobile_no(mobno);
-        customer.setAddress_id(address);
+        customer.setMobileNo(mobno);
+        customer.setAddress(address);
         return customer;
     }
 
     private Address getAddressObject(int addressid, String add, String district, int postalcode, String location,
                                      City city) {
         Address address = new Address();
-        address.setAddress_id(addressid);
+        address.setAddressId(addressid);
         address.setAddress(add);
         address.setDistrict(district);
-        address.setPostal_code(postalcode);
+        address.setPostalCode(postalcode);
         address.setLocation(location);
-        address.setCity_id(city);
+        address.setCity(city);
         return address;
     }
 
     private City getCityObject(int cityid, String cityname, Country country) {
         City city = new City();
-        city.setCity_id(cityid);
+        city.setCityId(cityid);
         city.setCity(cityname);
-        city.setCountry_id(country);
+        city.setCountry(country);
         return city;
     }
 

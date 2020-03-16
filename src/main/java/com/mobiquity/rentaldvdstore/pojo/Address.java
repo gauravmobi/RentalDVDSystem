@@ -8,23 +8,23 @@ public class Address extends MetadataPojo
 {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int address_id;
+    private int addressId;
     private String address;
     private String district;
     @OneToOne
-    private City city_id;
-    private int postal_code;
+    private City city;
+    private int postalCode;
     private String location;
 
     public Address() {
     }
 
-    public int getAddress_id() {
-        return address_id;
+    public int getAddressId() {
+        return addressId;
     }
 
-    public void setAddress_id(int address_id) {
-        this.address_id = address_id;
+    public void setAddressId(int addressId) {
+        this.addressId = addressId;
     }
 
     public String getAddress() {
@@ -43,20 +43,20 @@ public class Address extends MetadataPojo
         this.district = district;
     }
 
-    public City getCity_id() {
-        return city_id;
+    public City getCity() {
+        return city;
     }
 
-    public void setCity_id(City city_id) {
-        this.city_id = city_id;
+    public void setCity(City city) {
+        this.city = city;
     }
 
-    public int getPostal_code() {
-        return postal_code;
+    public int getPostalCode() {
+        return postalCode;
     }
 
-    public void setPostal_code(int postal_code) {
-        this.postal_code = postal_code;
+    public void setPostalCode(int postalCode) {
+        this.postalCode = postalCode;
     }
 
     public String getLocation() {
@@ -65,5 +65,17 @@ public class Address extends MetadataPojo
 
     public void setLocation(String location) {
         this.location = location;
+    }
+
+    @Override
+    public String toString() {
+        return "Address{" +
+                "addressId=" + addressId +
+                ", address='" + address + '\'' +
+                ", district='" + district + '\'' +
+                ", city=" + city +
+                ", postalCode=" + postalCode +
+                ", location='" + location + '\'' +
+                '}';
     }
 }

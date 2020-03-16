@@ -6,5 +6,7 @@ public interface RegistrationService {
 
     String userRegistration(Customer customer);
 
+    String registerCustomer(Customer customer);
+
     String testRegisteredEmailId(String email);
 }

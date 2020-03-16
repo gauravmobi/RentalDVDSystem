@@ -9,6 +9,8 @@ public interface RegistrationDao {
 
     String testRegisteredEmailId(String email);
 
+    String registerCustomer(Customer customer);
+
     Boolean validatePasswordPattern(String password);
 
     Boolean validateEmailPattern(String password);

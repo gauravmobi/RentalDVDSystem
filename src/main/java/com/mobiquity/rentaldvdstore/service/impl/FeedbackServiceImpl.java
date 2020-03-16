@@ -4,7 +4,7 @@ import com.mobiquity.rentaldvdstore.dao.FeedbackDao;
 import com.mobiquity.rentaldvdstore.pojo.Feedback;
 import com.mobiquity.rentaldvdstore.service.FeedbackService;
 
-public class FeedbackServiceImpl implements FeedbackService {
+public class    FeedbackServiceImpl implements FeedbackService {
 
     FeedbackDao feedbackDao;
 

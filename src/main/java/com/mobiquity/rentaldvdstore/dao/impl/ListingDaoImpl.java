@@ -25,8 +25,8 @@ public class ListingDaoImpl implements ListingDao {
 
     @Override
     public List<Rental> getDvdRentedCustomersList() {
-
-        return null;
+        Query query = entityManager.createQuery("FROM Rental",Rental.class);
+        return query.getResultList();
     }
 
     @Override
@@ -37,6 +37,7 @@ public class ListingDaoImpl implements ListingDao {
 
     @Override
     public List<Customer> getListOfAllActiveCustomers() {
-        return null;
+        Query query = entityManager.createQuery("FROM Customer WHERE active = true",Customer.class);
+        return query.getResultList();
     }
 }

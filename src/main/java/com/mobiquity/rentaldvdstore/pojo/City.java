@@ -7,20 +7,21 @@ import javax.persistence.*;
 public class City extends MetadataPojo {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int city_id;
+    private int cityId;
     private String city;
-    @ManyToOne
-    private Country country_id;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "countryId")
+    private Country country;
 
     public City() {
     }
 
-    public int getCity_id() {
-        return city_id;
+    public int getCityId() {
+        return cityId;
     }
 
-    public void setCity_id(int city_id) {
-        this.city_id = city_id;
+    public void setCityId(int cityId) {
+        this.cityId = cityId;
     }
 
     public String getCity() {
@@ -31,11 +32,13 @@ public class City extends MetadataPojo {
         this.city = city;
     }
 
-    public Country getCountry_id() {
-        return country_id;
+    public Country getCountry() {
+        return country;
     }
 
-    public void setCountry_id(Country country_id) {
-        this.country_id = country_id;
+    public void setCountry(Country country) {
+        this.country = country;
     }
 }
+
+    

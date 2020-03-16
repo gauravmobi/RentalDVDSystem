@@ -27,6 +27,7 @@ public class RegistrationValidator {
     public static Boolean validateEmailPattern(String email) {
         pattern = Pattern.compile(EMAIL_PATTERN);
         matcher = pattern.matcher(email);
+        System.out.println("Email validation passed");
         return matcher.matches();
     }
 
