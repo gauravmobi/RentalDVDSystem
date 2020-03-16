@@ -15,8 +15,8 @@ public class Customer extends MetadataPojo {
     private String password;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="address_id")
-    private Address address_id;
-    private String mobile_no;
+    private Address address;
+    private String mobileNo;
 
     public Customer() {
     }
@@ -61,12 +61,12 @@ public class Customer extends MetadataPojo {
         this.active = active;
     }
 
-    public Address getAddress_id() {
-        return address_id;
+    public Address getAddress() {
+        return address;
     }
 
-    public void setAddress_id(Address address_id) {
-        this.address_id = address_id;
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
     public String getPassword() {
@@ -77,12 +77,12 @@ public class Customer extends MetadataPojo {
         this.password = password;
     }
 
-    public String getMobile_no() {
-        return mobile_no;
+    public String getMobileNo() {
+        return mobileNo;
     }
 
-    public void setMobile_no(String mobile_no) {
-        this.mobile_no = mobile_no;
+    public void setMobileNo(String mobileNo) {
+        this.mobileNo = mobileNo;
     }
 
     @Override
@@ -94,8 +94,8 @@ public class Customer extends MetadataPojo {
                 ", email='" + email + '\'' +
                 ", active=" + active +
                 ", password='" + password + '\'' +
-                ", address_id=" + address_id +
-                ", mobile_no='" + mobile_no + '\'' +
+                ", address_id=" + address +
+                ", mobile_no='" + mobileNo + '\'' +
                 '}';
     }
 }

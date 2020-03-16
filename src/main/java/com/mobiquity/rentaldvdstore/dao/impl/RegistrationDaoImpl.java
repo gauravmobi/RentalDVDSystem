@@ -26,6 +26,11 @@ public class RegistrationDaoImpl implements RegistrationDao {
     }
 
     @Override
+    public String registerCustomer(Customer customer) {
+        return null;
+    }
+
+    @Override
     public Boolean validatePasswordPattern(String password) {
         return null;
     }

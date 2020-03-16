@@ -12,8 +12,8 @@ public class Address extends MetadataPojo {
     private String district;
 
     @OneToOne(cascade = CascadeType.ALL)
-    private City city_id;
-    private int postal_code;
+    private City city;
+    private int postalCode;
     private String location;
 
     public Address() {
@@ -43,20 +43,20 @@ public class Address extends MetadataPojo {
         this.district = district;
     }
 
-    public City getCity_id() {
-        return city_id;
+    public City getCity() {
+        return city;
     }
 
-    public void setCity_id(City city_id) {
-        this.city_id = city_id;
+    public void setCity(City city) {
+        this.city = city;
     }
 
-    public int getPostal_code() {
-        return postal_code;
+    public int getPostalCode() {
+        return postalCode;
     }
 
-    public void setPostal_code(int postal_code) {
-        this.postal_code = postal_code;
+    public void setPostalCode(int postalCode) {
+        this.postalCode = postalCode;
     }
 
     public String getLocation() {

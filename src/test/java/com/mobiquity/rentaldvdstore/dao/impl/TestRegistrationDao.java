@@ -35,8 +35,8 @@ public class TestRegistrationDao {
         customer.setActive(active);
         customer.setEmail(email);
         customer.setPassword(password);
-        customer.setMobile_no(mobno);
-        customer.setAddress_id(address);
+        customer.setMobileNo(mobno);
+        customer.setAddress(address);
         return customer;
     }
 
@@ -46,9 +46,9 @@ public class TestRegistrationDao {
         address.setAddressId(addressid);
         address.setAddress(add);
         address.setDistrict(district);
-        address.setPostal_code(postalcode);
+        address.setPostalCode(postalcode);
         address.setLocation(location);
-        address.setCity_id(city);
+        address.setCity(city);
         return address;
     }
 

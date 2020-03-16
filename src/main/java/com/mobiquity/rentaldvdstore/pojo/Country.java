@@ -28,7 +28,6 @@ public class Country extends MetadataPojo {
         return countryId;
     }
 
-
     public void setCountryId(int countryId) {
         this.countryId = countryId;
     }

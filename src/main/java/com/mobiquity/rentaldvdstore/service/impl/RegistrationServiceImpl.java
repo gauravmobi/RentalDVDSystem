@@ -22,7 +22,7 @@ public class RegistrationServiceImpl implements RegistrationService {
         if (customer != null) {
             if (RegistrationValidator.validateEmailPattern(customer.getEmail())
                     && RegistrationValidator.validatePasswordPattern(customer.getPassword())
-                    && RegistrationValidator.validateMobileNoPattern(customer.getMobile_no())) {
+                    && RegistrationValidator.validateMobileNoPattern(customer.getMobileNo())) {
                 try {
                     if (null!=registrationDao.userRegistration(customer)) {
                         return "Registration Success";
