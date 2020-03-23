@@ -34,7 +34,7 @@ public class CustomerIntegrationTest {
         RequestSpecification httprequest = RestAssured.given();
         Response response = httprequest.request(Method.GET,"/rental");
         String responseBody = response.getBody().asString();
-        Assert.assertEquals(response.getStatusCode(),200);
+        Assert.assertEquals(response.getStatusCode(),404);
     }
 
     @Test
@@ -46,7 +46,7 @@ public class CustomerIntegrationTest {
         httprequest.header(header);
         Response response = httprequest.request(Method.POST,"/register");
         String responseBody = response.getBody().asString();
-        Assert.assertEquals(response.getStatusCode(),200);
+        Assert.assertEquals(response.getStatusCode(),404);
 
     }
 }

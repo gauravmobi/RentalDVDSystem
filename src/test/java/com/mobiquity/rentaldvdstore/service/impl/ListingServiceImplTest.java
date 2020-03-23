@@ -60,7 +60,7 @@ public class ListingServiceImplTest {
         Dvd dvd = new Dvd();
 
         customer.setCustomerId(customer_id);
-        dvd.setFilmId(dvdid);
+        dvd.setDvdId(dvdid);
 
         rental.setRentalId(rental_id);
         rental.setRentalDate(rental_date);

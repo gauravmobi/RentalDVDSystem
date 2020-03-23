@@ -25,12 +25,7 @@ public class RegistrationDaoImpl implements RegistrationDao {
         return null;
     }
 
-    @Override
-    public String registerCustomer(Customer customer) {
-        return null;
-    }
-
-    @Override
+        @Override
     public Boolean validatePasswordPattern(String password) {
         return null;
     }
@@ -40,8 +35,4 @@ public class RegistrationDaoImpl implements RegistrationDao {
         return null;
     }
 
-    @Override
-    public Boolean validateMobileNo(String mobile_no) {
-        return null;
-    }
 }

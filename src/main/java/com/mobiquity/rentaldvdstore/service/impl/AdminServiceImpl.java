@@ -2,6 +2,7 @@ package com.mobiquity.rentaldvdstore.service.impl;
 
 import com.mobiquity.rentaldvdstore.dao.AdminDao;
 import com.mobiquity.rentaldvdstore.pojo.Admin;
+import com.mobiquity.rentaldvdstore.pojo.Dvd;
 import com.mobiquity.rentaldvdstore.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,6 +37,28 @@ public class AdminServiceImpl implements AdminService {
             else
                 return "Cannot Delete Admin";
         } else
+            throw new IllegalArgumentException();
+    }
+
+    @Override
+    public String addNewDvd(Dvd dvd) {
+        if(dvd != null){
+            if(null != adminDao.addNewDvd(dvd))
+                return "Dvd Added Successfully";
+            else
+                return "Dvd not Added";
+        }else
+            throw new IllegalArgumentException();
+    }
+
+    @Override
+    public String removeDvd(int dvdId) {
+        if( dvdId > 0){
+            if(adminDao.removeDvd(dvdId) != null)
+                return "Dvd Successfully deleted";
+            else
+                return "Cannot delete Dvd";
+        }else
             throw new IllegalArgumentException();
     }
 }

@@ -10,7 +10,7 @@ import javax.persistence.*;
 public class Dvd extends MetadataPojo {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int filmId;
+    private int dvdId;
     private String title;
     private String description;
     private int rentalDuration;
@@ -64,12 +64,12 @@ public class Dvd extends MetadataPojo {
         this.genre = genre;
     }
 
-    public int getFilmId() {
-        return filmId;
+    public int getDvdId() {
+        return dvdId;
     }
 
-    public void setFilmId(int filmId) {
-        this.filmId = filmId;
+    public void setDvdId(int dvdId) {
+        this.dvdId = dvdId;
     }
 
     public String getTitle() {
