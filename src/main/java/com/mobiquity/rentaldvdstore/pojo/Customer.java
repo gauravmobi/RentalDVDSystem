@@ -13,6 +13,9 @@ public class Customer extends MetadataPojo {
     private String email;
     private Boolean active;
     private String password;
+    @Version
+    private int customerversion;
+
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="addressId")
     private Address address;
@@ -84,6 +87,16 @@ public class Customer extends MetadataPojo {
     public void setMobileNo(String mobileNo) {
         this.mobileNo = mobileNo;
     }
+
+
+    public int getCustomerVersion() {
+        return customerversion;
+    }
+
+    public void setCustomerVersion(int version) {
+        this.customerversion = version;
+    }
+
 
     @Override
     public String toString() {

@@ -1,6 +1,7 @@
 package com.mobiquity.rentaldvdstore.controller;
 
 import com.mobiquity.rentaldvdstore.pojo.Customer;
+import com.mobiquity.rentaldvdstore.service.CustomerService;
 import com.mobiquity.rentaldvdstore.service.ListingService;
 import com.mobiquity.rentaldvdstore.service.LoginService;
 import com.mobiquity.rentaldvdstore.service.RegistrationService;
@@ -18,6 +19,9 @@ public class CustomerController {
     LoginService loginService;
     @Autowired
     RegistrationService registrationService;
+    @Autowired
+    CustomerService customerService;
+
 
     @GetMapping("customers")
     public List<Customer> getAllCustomers() {
@@ -39,4 +43,13 @@ public class CustomerController {
         System.out.println(customer);
         return registrationService.userRegistration(customer);
     }
+
+    @DeleteMapping("delete/{customerId}")
+    @ResponseBody
+    public String deleteCustomer(@PathVariable Long customerId ){
+        return customerService.deleteCustomerService(customerId);
+    }
+
+
+
 }
