@@ -5,6 +5,7 @@ import com.mobiquity.rentaldvdstore.dao.SearchDvdDao;
 import com.mobiquity.rentaldvdstore.enums.Genre;
 import com.mobiquity.rentaldvdstore.enums.Language;
 import com.mobiquity.rentaldvdstore.dto.DvdDTO;
+import com.mobiquity.rentaldvdstore.helper.PhysicalConstants;
 import com.mobiquity.rentaldvdstore.pojo.Dvd;
 import org.junit.Before;
 import org.junit.Test;
@@ -51,7 +52,7 @@ public class SearchDvdServiceimplTest {
     }
 
     @Test
-    public void testSelectDvdByCriteriaWhenAllCriteriaAttrsAreEmpty() {
+    public void testSelectDvdByCriteriaWhenAllCriteriaAttributesAreEmpty() {
         DvdDTO dvdDTO = new DvdDTO();
         List<Dvd> dvds = new ArrayList<>();
         Dvd dvd = new Dvd();
@@ -186,5 +187,11 @@ public class SearchDvdServiceimplTest {
         Mockito.when(searchDvdDao.selectDvdByCriteria(categoryMap))
                 .thenReturn(list);
         assertEquals(list,searchDvdServiceimpl.selectDvdByCriteria(dvdDTO));
+    }
+
+    public void testMethod(String dropDowValue, String searchValue){
+        if(dropDowValue.equalsIgnoreCase(PhysicalConstants.GENRE)){
+            //searchDvdDao.selectDvdByCriteria();
+        }
     }
 }

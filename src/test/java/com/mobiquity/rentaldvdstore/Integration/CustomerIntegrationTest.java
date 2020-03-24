@@ -23,23 +23,4 @@ public class CustomerIntegrationTest {
         String responseBody = response.getBody().asString();
         Assert.assertEquals(response.getStatusCode(),200);
     }
-
-    @Test
-    public void testgetDvdRentedCustomerList() {
-        RequestSpecification specification = RestAssured.given();
-        Response response = specification.request(Method.GET, "/rental");
-        String responseBody = response.getBody().asString();
-        Assert.assertEquals(response.getStatusCode(), 200);
-    }
-
-    @Test
-    public void testAddCustomer(){
-        RequestSpecification specification = RestAssured.given();
-        Customer customer = new Customer();
-        Header header = new Header("Content-Type","application/json");
-        specification.body(customer);
-        specification.header(header);
-        Response response = specification.request(Method.POST,"/register");
-        Assert.assertEquals(response.getStatusCode(),200);
-    }
 }
