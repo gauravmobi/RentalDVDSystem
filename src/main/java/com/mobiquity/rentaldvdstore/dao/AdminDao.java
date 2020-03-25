@@ -11,4 +11,8 @@ public interface AdminDao {
     public String addNewDvd(Dvd dvd);
 
     public String removeDvd(int dvdId);
+
+    public Dvd updateDvd(Dvd DvdDetails);
+
+    public Dvd getDvd(int dvdId);
 }

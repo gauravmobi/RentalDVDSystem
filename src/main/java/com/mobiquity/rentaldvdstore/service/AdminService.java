@@ -9,4 +9,5 @@ public interface AdminService {
     public String removeAdmin(int adminId);
     public String addNewDvd(Dvd dvd);
     public String removeDvd(int dvdId);
+    public Dvd updateDvd(int dvdId,Dvd dvd);
 }

@@ -5,6 +5,7 @@ import com.mobiquity.rentaldvdstore.pojo.Admin;
 import com.mobiquity.rentaldvdstore.pojo.Dvd;
 import com.mobiquity.rentaldvdstore.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -42,23 +43,52 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public String addNewDvd(Dvd dvd) {
-        if(dvd != null){
-            if(null != adminDao.addNewDvd(dvd))
+        if (dvd != null) {
+            if (null != adminDao.addNewDvd(dvd))
                 return "Dvd Added Successfully";
             else
                 return "Dvd not Added";
-        }else
+        } else
             throw new IllegalArgumentException();
     }
 
     @Override
     public String removeDvd(int dvdId) {
-        if( dvdId > 0){
-            if(adminDao.removeDvd(dvdId) != null)
+        if (dvdId > 0) {
+            if (adminDao.removeDvd(dvdId) != null)
                 return "Dvd Successfully deleted";
             else
                 return "Cannot delete Dvd";
-        }else
+        } else
             throw new IllegalArgumentException();
     }
+
+    @Override
+    public Dvd updateDvd(int dvdId, Dvd DvdDetails) {
+        Dvd dvd;
+        if (DvdDetails != null && dvdId > 0) {
+            if (null != ( dvd = adminDao.getDvd(dvdId))) {
+                dvd.setTitle(DvdDetails.getTitle());
+                dvd.setDirector(DvdDetails.getDirector());
+                dvd.setActor(DvdDetails.getActor());
+                dvd.setLanguage(DvdDetails.getLanguage());
+                dvd.setDescription(DvdDetails.getDescription());
+                dvd.setRentalRate(DvdDetails.getRentalRate());
+                dvd.setGenre(DvdDetails.getGenre());
+                dvd.setRating(DvdDetails.getRating());
+                dvd.setRentalDuration(DvdDetails.getRentalDuration());
+                dvd.setYear(DvdDetails.getYear());
+                return adminDao.updateDvd(dvd);
+            }
+            else
+            {
+               throw new ResourceNotFoundException("Dvd not found for this id :: " + dvdId);
+            }
+        }
+        else
+        {
+            throw new IllegalArgumentException();
+        }
+    }
+
 }

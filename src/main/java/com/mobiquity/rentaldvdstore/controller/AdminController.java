@@ -10,6 +10,7 @@ import com.mobiquity.rentaldvdstore.service.ListingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -51,5 +52,11 @@ public class AdminController {
     @GetMapping("dvds")
     public List<Dvd> getAllDvds(){
         return listingService.getAllFilms();
+    }
+
+    @PutMapping("/dvds/{id}")
+    public Dvd updateDvd(@PathVariable(value = "id") int dvdId, @Valid @RequestBody Dvd DvdDetails) {
+
+        return adminService.updateDvd(dvdId, DvdDetails);
     }
 }
