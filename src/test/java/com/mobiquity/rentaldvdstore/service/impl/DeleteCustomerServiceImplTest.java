@@ -1,6 +1,6 @@
 package com.mobiquity.rentaldvdstore.service.impl;
 
-import com.mobiquity.rentaldvdstore.dao.CustomerDao;
+import com.mobiquity.rentaldvdstore.dao.DeleteCustomerDao;
 import com.mobiquity.rentaldvdstore.pojo.Address;
 import com.mobiquity.rentaldvdstore.pojo.City;
 import com.mobiquity.rentaldvdstore.pojo.Country;
@@ -20,16 +20,16 @@ import static org.junit.jupiter.api.Assertions.*;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @ContextConfiguration
-public class CustomerServiceImplTest {
+public class DeleteCustomerServiceImplTest {
 
-    CustomerServiceImpl service=new CustomerServiceImpl();
+    DeleteCustomerServiceImpl service=new DeleteCustomerServiceImpl();
 
     @Mock
-    CustomerDao customerDao;
+    DeleteCustomerDao deleteCustomerDao;
 
     @Before
     public void setup(){
-        service.setCustomerDao(customerDao);
+        service.setDeleteCustomerDao(deleteCustomerDao);
     }
 
     private Customer getCustomerObject(Long id, String fname, String lname, String email, Boolean active, String password,
@@ -84,7 +84,7 @@ public class CustomerServiceImplTest {
         Customer customer = getCustomerObject(1L, "nisarg", "turke", "nisarg@gmail.com",
                 true, "nisarg123", "8975965296", address);
 
-        Mockito.when(customerDao.deleteCustomer(customer.getCustomerId())).thenReturn("customer with id " +customer.getCustomerId()+" deleted successfully");
+        Mockito.when(deleteCustomerDao.deleteCustomer(customer.getCustomerId())).thenReturn("customer with id " +customer.getCustomerId()+" deleted successfully");
         assertEquals("customer with id " +customer.getCustomerId()+" deleted successfully",service.deleteCustomerService(customer.getCustomerId()));
     }
 
@@ -97,7 +97,7 @@ public class CustomerServiceImplTest {
         Customer customer = getCustomerObject(1L, "nisarg", "turke", "nisarg@gmail.com",
                 true, "nisarg123", "8975965296", address);
 
-        Mockito.when(customerDao.deleteCustomer(customer.getCustomerId())).thenReturn("record not found. failed to delete");
+        Mockito.when(deleteCustomerDao.deleteCustomer(customer.getCustomerId())).thenReturn("record not found. failed to delete");
         assertEquals("record not found. failed to delete",service.deleteCustomerService(customer.getCustomerId()));
     }
 

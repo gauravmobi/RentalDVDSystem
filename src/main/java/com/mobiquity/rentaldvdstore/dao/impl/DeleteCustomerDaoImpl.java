@@ -1,6 +1,6 @@
 package com.mobiquity.rentaldvdstore.dao.impl;
 
-import com.mobiquity.rentaldvdstore.dao.CustomerDao;
+import com.mobiquity.rentaldvdstore.dao.DeleteCustomerDao;
 import com.mobiquity.rentaldvdstore.pojo.Customer;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -8,7 +8,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 @Repository
-public class CustomerDaoImpl implements CustomerDao {
+public class DeleteCustomerDaoImpl implements DeleteCustomerDao {
     @PersistenceContext
     EntityManager entityManager;
     @Transactional

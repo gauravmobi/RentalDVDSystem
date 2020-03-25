@@ -4,6 +4,6 @@ import com.mobiquity.rentaldvdstore.pojo.Customer;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface CustomerDao {
+public interface DeleteCustomerDao {
     public String deleteCustomer(Long customerId);
 }

@@ -16,8 +16,12 @@ public class RegistrationDaoImpl implements RegistrationDao {
     @Transactional
     @Override
     public String userRegistration(Customer customer) {
+        try{
             entityManager.persist(customer);
             return "Customer Registered Successfully";
+        }catch (Exception e) {
+            return "customer registration failed";
+        }
     }
 
     @Override

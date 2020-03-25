@@ -71,7 +71,7 @@ public class RegistrationServiceImplTest {
     }
 
     @Test
-    public void testSuccessfullyRegistration() {
+    public void testCustomerRegistration() {
         Country country = getCountryObject(1, "India");
         City city = getCityObject(111, "Pune", country);
         Address address = getAddressObject(3, "a/p Laxmi chowk 32 Shirala", "Sangli",
@@ -79,40 +79,28 @@ public class RegistrationServiceImplTest {
         Customer customer = getCustomerObject(101L, "dipak", "b", "abc@gmail.com",
                 true, "abcW$1", "+919999999999", address);
 
-        Mockito.when(registrationDao.userRegistration(customer)).thenReturn("Registration Success");
-        assertEquals("Registration Success", service.userRegistration(customer));
+        Mockito.when(registrationDao.userRegistration(customer)).thenReturn("Customer Registered Successfully");
+        assertEquals("Customer Registered Successfully", service.userRegistration(customer));
     }
 
     @Test
-    public void testFailRegistrationWithException() {
+    public void testCustomerRegistrationFailed() {
         Country country = getCountryObject(1, "India");
         City city = getCityObject(111, "Pune", country);
         Address address = getAddressObject(3, "a/p Laxmi chowk 32 Shirala", "Sangli",
                 415408, "Shirala", city);
         Customer customer = getCustomerObject(101L, "dipak", "b", "abc@gmail.com",
                 true, "abcW$1", "+919999999999", address);
-        Mockito.when(registrationDao.userRegistration(customer)).thenThrow(RuntimeException.class);
-        assertEquals("Registration Failed", service.userRegistration(customer));
+        Mockito.when(registrationDao.userRegistration(customer)).thenReturn("customer registration failed");
+        assertEquals("customer registration failed", service.userRegistration(customer));
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void testFailRegistrationWithEmptyCustomerObject() {
+    public void testIfCustomerIsNull() {
         assertEquals(IllegalArgumentException.class, service.userRegistration(null));
     }
 
-    @Test
-    public void testFailRegistrationWithNullDaoCustomerObject() {
-        Country country = getCountryObject(1, "India");
-        City city = getCityObject(111, "Pune", country);
-        Address address = getAddressObject(3, "a/p Laxmi chowk 32 Shirala", "Sangli",
-                415408, "Shirala", city);
-        Customer customer = getCustomerObject(101L, "dipak", "b", "abc@gmail.com",
-                true, "abcW$1", "+919999999999", address);
-
-        Mockito.when(registrationDao.userRegistration(customer)).thenReturn(null);
-        assertEquals("Registration Failed", service.userRegistration(customer));
-    }
-
+    
     @Test
     public void testCustomerRegisteredOrNot() {
         Country country = getCountryObject(1, "India");

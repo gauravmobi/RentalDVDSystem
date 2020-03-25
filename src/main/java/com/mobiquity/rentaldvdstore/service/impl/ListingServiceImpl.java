@@ -6,6 +6,7 @@ import com.mobiquity.rentaldvdstore.pojo.Dvd;
 import com.mobiquity.rentaldvdstore.pojo.Rental;
 import com.mobiquity.rentaldvdstore.service.ListingService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
