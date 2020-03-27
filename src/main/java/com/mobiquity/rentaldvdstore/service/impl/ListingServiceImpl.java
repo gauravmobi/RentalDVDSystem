@@ -6,6 +6,7 @@ import com.mobiquity.rentaldvdstore.pojo.Dvd;
 import com.mobiquity.rentaldvdstore.pojo.Rental;
 import com.mobiquity.rentaldvdstore.service.ListingService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -51,5 +52,23 @@ public class ListingServiceImpl implements ListingService {
             return customerslist;
         } else
             throw new IllegalArgumentException("Customer Not Found");
+    }
+
+    @Override
+    public List<Customer> getCustomersByName(String name) {
+        if(listingDao.getCustomersByName(name) != null)
+        {
+            if(listingDao.getCustomersByName(name).isEmpty()) {
+                throw new IllegalArgumentException("Customer Not Found");
+            }
+            else
+            {
+                return listingDao.getCustomersByName(name);
+            }
+        }
+        else
+        {
+            return listingDao.getCustomersByName(name);
+        }
     }
 }

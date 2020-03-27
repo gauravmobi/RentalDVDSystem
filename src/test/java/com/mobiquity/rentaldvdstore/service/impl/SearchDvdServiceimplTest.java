@@ -37,10 +37,6 @@ public class SearchDvdServiceimplTest {
         searchDvdServiceimpl.setSearchDvdDao(searchDvdDao);
         searchDvdServiceimpl.setListingDao(listingDao);
     }
-    @Test(expected = IllegalArgumentException.class)
-    public void testSelectDvdByCriteria() {
-        searchDvdServiceimpl.selectDvdByCriteria(null);
-    }
 
     @Test
     public void testSelectDvdByCriteriaWhenGenreIsEmpty() {
@@ -187,6 +183,13 @@ public class SearchDvdServiceimplTest {
         Mockito.when(searchDvdDao.selectDvdByCriteria(categoryMap))
                 .thenReturn(list);
         assertEquals(list,searchDvdServiceimpl.selectDvdByCriteria(dvdDTO));
+    }
+
+    public void testSearchPhrase(String searchPhrase){
+        if(searchPhrase.equalsIgnoreCase(PhysicalConstants.GENRE))
+        {
+
+        }
     }
 
     public void testMethod(String dropDowValue, String searchValue){

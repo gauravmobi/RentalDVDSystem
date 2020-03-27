@@ -50,4 +50,14 @@ public class DvdDTO {
         this.year = year;
     }
 
+    @Override
+    public String toString() {
+        return "DvdDTO{" +
+                "genre=" + genre +
+                ", language=" + language +
+                ", actor='" + actor + '\'' +
+                ", director='" + director + '\'' +
+                ", year='" + year + '\'' +
+                '}';
+    }
 }

@@ -1,8 +1,6 @@
 package com.mobiquity.rentaldvdstore.Integration;
 
-import com.mobiquity.rentaldvdstore.pojo.Customer;
 import io.restassured.RestAssured;
-import io.restassured.http.Header;
 import io.restassured.http.Method;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;

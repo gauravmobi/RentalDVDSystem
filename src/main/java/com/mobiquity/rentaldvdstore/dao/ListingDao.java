@@ -16,4 +16,6 @@ public interface ListingDao {
     List<Customer> getAllCustomers();
 
     public List<Customer> getListOfAllActiveCustomers();
+
+    List<Customer> getCustomersByName(String name);
 }

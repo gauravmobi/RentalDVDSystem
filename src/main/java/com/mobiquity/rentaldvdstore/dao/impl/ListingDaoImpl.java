@@ -38,4 +38,13 @@ public class ListingDaoImpl implements ListingDao {
         Query query = entityManager.createQuery("FROM Customer where active = true",Customer.class);
         return query.getResultList();
     }
+
+    @Override
+    public List<Customer> getCustomersByName(String name) {
+        Query query = entityManager.createQuery("SELECT c " +
+                "FROM Customer c where c.firstName=:firstName or c.lastName=:lastName",Customer.class);
+        query.setParameter("firstName",name);
+        query.setParameter("lastName",name);
+        return query.getResultList();
+    }
 }

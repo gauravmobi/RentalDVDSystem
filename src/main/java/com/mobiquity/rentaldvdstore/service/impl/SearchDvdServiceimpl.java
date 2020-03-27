@@ -6,10 +6,12 @@ import com.mobiquity.rentaldvdstore.dto.DvdDTO;
 import com.mobiquity.rentaldvdstore.helper.PhysicalConstants;
 import com.mobiquity.rentaldvdstore.pojo.Dvd;
 import com.mobiquity.rentaldvdstore.service.SearchDvdService;
+import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.List;
 
+@Service
 public class SearchDvdServiceimpl implements SearchDvdService {
 
     private SearchDvdDao searchDvdDao;
@@ -26,6 +28,7 @@ public class SearchDvdServiceimpl implements SearchDvdService {
     @Override
     public List<Dvd> selectDvdByCriteria(DvdDTO dvdDTO) {
         HashMap<String, String> categoryMap = new HashMap<>();
+        System.out.println(dvdDTO.toString());
         if (dvdDTO != null) {
             if (dvdDTO.getGenre() != null) {
                 categoryMap.put(PhysicalConstants.GENRE, dvdDTO.getGenre().toString());

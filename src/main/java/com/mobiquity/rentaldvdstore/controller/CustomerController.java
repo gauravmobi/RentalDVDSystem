@@ -1,9 +1,12 @@
 package com.mobiquity.rentaldvdstore.controller;
 
+import com.mobiquity.rentaldvdstore.dto.DvdDTO;
 import com.mobiquity.rentaldvdstore.pojo.Customer;
+import com.mobiquity.rentaldvdstore.pojo.Dvd;
 import com.mobiquity.rentaldvdstore.service.ListingService;
 import com.mobiquity.rentaldvdstore.service.LoginService;
 import com.mobiquity.rentaldvdstore.service.RegistrationService;
+import com.mobiquity.rentaldvdstore.service.SearchDvdService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,6 +21,8 @@ public class CustomerController {
     LoginService loginService;
     @Autowired
     RegistrationService registrationService;
+    @Autowired
+    SearchDvdService searchDvdService;
 
     @GetMapping("customers")
     public List<Customer> getAllCustomers() {
