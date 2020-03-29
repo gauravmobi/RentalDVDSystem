@@ -6,11 +6,10 @@ import com.mobiquity.rentaldvdstore.service.ListingService;
 import com.mobiquity.rentaldvdstore.service.LoginService;
 import com.mobiquity.rentaldvdstore.service.RegistrationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -47,8 +46,8 @@ public class CustomerController {
     }
 
     @GetMapping("login")
-    public String customerLogin(){
-        return loginService.testLoginCredentials("gaurav","gaurav");
+    public String customerLogin(@RequestParam("email")  String email , @RequestParam("password")  String password){
+        return loginService.validateUser(email,password);
     }
 
 
@@ -58,14 +57,9 @@ public class CustomerController {
         System.out.println(customer);
         String str= registrationService.userRegistration(customer);
         if (str == null)
-            return ResponseEntity.noContent().build();
+            return new ResponseEntity<String>( "registration failed",HttpStatus.BAD_REQUEST);
         else
-            return ResponseEntity.ok("okay");
-//        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path(
-//                "/{id}").buildAndExpand(customer.getCustomerId()).toUri();
-
-        //return ResponseEntity.created(location).build();
-
+            return new ResponseEntity<String>( "Customer Registered Successfully",HttpStatus.OK);
     }
 
     @DeleteMapping("delete/{customerId}")
@@ -74,7 +68,6 @@ public class CustomerController {
         return deleteCustomerService.deleteCustomerService(customerId);
 
     }
-
 
 
 }
