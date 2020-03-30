@@ -6,6 +6,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -16,32 +17,32 @@ import static org.junit.Assert.assertEquals;
 @SpringBootTest
 @ContextConfiguration
 public class LoginServiceImplTest {
-    LoginServiceImpl service = new LoginServiceImpl();
+    @Autowired
+    LoginServiceImpl loginService;
     @Mock
     LoginDao loginDao;
 
     @Before
     @Test
     public void setup() {
-        service.setLoginDao(loginDao);
+        loginService.setLoginDao(loginDao);
     }
 
     @Test
-    public void testLoginByUsername() {
-        Mockito.when(loginDao.getPasswordByUsername("gaurav")).thenReturn("gaurav");
-        assertEquals("Login Successfully", service.testLoginCredentials("gaurav", "gaurav"));
+    public void testLoginCustomer() {
+        Mockito.when(loginDao.validateUser("nisarg@gmail.com","abcW$1")).thenReturn("abcW$1");
+        assertEquals("login successful", loginService.validateUser("nisarg@gmail.com", "abcW$1"));
     }
 
     @Test
-    public void testLoginByInvalidUsername() {
-        Mockito.when(loginDao.getPasswordByUsername("gaurav")).thenReturn("gaurav");
-        assertEquals("Invalid Username/Password", service.testLoginCredentials("saurav", "gaurav"));
+    public void testLoginCustomerInvalidEmailAndPassword() {
+        Mockito.when(loginDao.validateUser("abc@gmail.com", "abcW$1")).thenReturn("invalid email or password. failed to login");
+        assertEquals("login failed", loginService.validateUser("abc@gmail.com", "abcW$1"));
     }
 
-    @Test
-    public void testLoginByInvalidPassword() {
-        Mockito.when(loginDao.getPasswordByUsername("gaurav")).thenReturn("gaurav");
-        assertEquals("Invalid Username/Password", service.testLoginCredentials("gaurav", "saurav"));
+    @Test(expected = IllegalArgumentException.class)
+    public void testLoginCustomerWhenEmailAndPasswordIsNull() {
+        loginService.validateUser(null,null);
     }
 
 }
