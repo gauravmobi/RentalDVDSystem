@@ -26,23 +26,13 @@ public class CustomerController {
 
 
     @GetMapping("customers")
-    public ResponseEntity<List<Customer>> getAllCustomers() {
-
-        List<Customer> listOfAllCustomers = listingService.getAllCustomers();
-        if (listOfAllCustomers.size()==0)
-            return ResponseEntity.noContent().build();
-        else
-            return ResponseEntity.ok(listOfAllCustomers);
-
+    public List<Customer> getAllCustomers() {
+        return listingService.getAllCustomers();
     }
 
     @GetMapping("active")
-    public  ResponseEntity<List<Customer>>getAllActiveCustomers() {
-        List<Customer> listOfAllActiveCustomers =listingService.getListOfAllActiveCustomers();
-        if (listOfAllActiveCustomers.size()==0)
-            return ResponseEntity.noContent().build();
-        else
-            return ResponseEntity.ok(listOfAllActiveCustomers);
+    public  List<Customer> getAllActiveCustomers() {
+        return listingService.getListOfAllActiveCustomers();
     }
 
     @GetMapping("login")
@@ -50,16 +40,9 @@ public class CustomerController {
         return loginService.validateUser(email,password);
     }
 
-
-
     @PostMapping("registration")
-    public ResponseEntity<String> customerRegistration(@RequestBody Customer customer){
-        System.out.println(customer);
-        String str= registrationService.userRegistration(customer);
-        if (str == null)
-            return new ResponseEntity<String>( "registration failed",HttpStatus.BAD_REQUEST);
-        else
-            return new ResponseEntity<String>( "Customer Registered Successfully",HttpStatus.OK);
+    public String customerRegistration(@RequestBody Customer customer){
+        return  registrationService.userRegistration(customer);
     }
 
     @DeleteMapping("delete/{customerId}")
@@ -68,6 +51,4 @@ public class CustomerController {
         return deleteCustomerService.deleteCustomerService(customerId);
 
     }
-
-
 }
