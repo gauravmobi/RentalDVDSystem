@@ -24,6 +24,16 @@ public class Customer extends MetadataPojo {
     public Customer() {
     }
 
+    public Customer(String firstName, String lastName, String email, Boolean active, String password, Address address, String mobileNo) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.active = active;
+        this.password = password;
+        this.address = address;
+        this.mobileNo = mobileNo;
+    }
+
     public Long getCustomerId() {
         return customerId;
     }

@@ -21,7 +21,6 @@ public class LoginDaoImpl implements LoginDao {
                 Query query = entityManager.createQuery(select);
                 query.setParameter("email", email);
                 query.setParameter("password", password);
-                //Customer customerFromDb = (Customer) query.getSingleResult();
                 return query.getSingleResult().toString();
             }catch (javax.persistence.NoResultException e){
                 return "invalid email or password. failed to login ";
